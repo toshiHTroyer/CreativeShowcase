@@ -1,8 +1,10 @@
 {
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
   "postCreateCommand": "cd creativeshowcase && npm install",
-  "postStartCommand": "cd creativeshowcase && npx pm2 start npm -- run dev && npx pm2 logs",
+  "postStartCommand": "cd creativeshowcase && npm run dev",
   "remoteEnv": {
     "PORT": "${PORT}",
-    "DSN": "${DSN}"
+    "DSN": "${DSN}",
+    "SESSION_SECRET": "${SESSION_SECRET}"
   }
 }

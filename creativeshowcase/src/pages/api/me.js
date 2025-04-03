@@ -1,15 +1,21 @@
-import nextConnect from 'next-connect';
+// /api/me.js
+import dbConnect from '../../lib/dbConnect.js';
 import { sessionOptions } from '../../lib/session.js';
 import passport from '../../lib/passport.js';
 
-const handler = nextConnect();
+export default async function handler(req, res) {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: `Method ${req.method} not allowed.` });
+  }
 
-handler.use(sessionOptions);
-handler.use(passport.initialize());
-handler.use(passport.session());
+  await dbConnect();
 
-handler.get((req, res) => {
-    res.status(200).json({ user: req.user || null });
+  sessionOptions(req, res, () => {
+    passport.initialize()(req, res, () => {
+      passport.session()(req, res, () => {
+        const user = req.user || null;
+        res.status(200).json({ user });
+      });
+    });
   });
-
-export default handler;
+}

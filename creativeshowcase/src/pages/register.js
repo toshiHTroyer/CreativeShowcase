@@ -18,6 +18,7 @@ export default function Register() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form),
+      credentials: 'include'
     });
 
     const data = res.headers.get('content-type')?.includes('application/json') ? await res.json() : {};

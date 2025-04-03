@@ -17,7 +17,7 @@
     "express-session": "^1.18.1",
     "mongoose": "^8.13.1",
     "next": "^15.2.4",
-    "next-connect": "^1.0.0",
+    "next-connect": "^0.12.2",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "pm2": "^6.0.5",

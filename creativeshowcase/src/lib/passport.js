@@ -3,6 +3,8 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { User } from '../models/db.js';
 import bcrypt from 'bcrypt';
 
+//Implemented Passport.js with the LocalStrategy, integrating secure session management via express-session and MongoDB storage. 
+//This setup uses passport.authenticate() inside Next.js API routes to validate credentials and issue sessions
 passport.use(new LocalStrategy(
   { usernameField: 'username', passwordField: 'password' },
   async (username, password, done) => {

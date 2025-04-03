@@ -1,19 +1,21 @@
-import nextConnect from 'next-connect';
+// /api/logout.js
 import { sessionOptions } from '../../lib/session.js';
 import passport from '../../lib/passport.js';
 
-const handler = nextConnect();
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: `Method ${req.method} not allowed.` });
+  }
 
-handler.use(sessionOptions);
-handler.use(passport.initialize());
-handler.use(passport.session());
-
-handler.post((req, res) => {
-  req.logout(() => {
-    req.session.destroy(() => {
-      res.redirect('/');
+  sessionOptions(req, res, async () => {
+    passport.initialize()(req, res, () => {
+      passport.session()(req, res, () => {
+        req.logout(() => {
+          req.session.destroy(() => {
+            res.redirect('/');
+          });
+        });
+      });
     });
   });
-});
-
-export default handler;
+}
