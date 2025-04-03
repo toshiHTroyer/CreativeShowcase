@@ -3,6 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/portfolio/[slug]": "pages/portfolio/[slug].js",
-  "/api/portfolio": "pages/api/portfolio.js"
+  "/api/login": "pages/api/login.js",
+  "/register": "pages/register.js",
+  "/api/register": "pages/api/register.js"
 }
