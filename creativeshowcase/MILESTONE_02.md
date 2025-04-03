@@ -27,23 +27,22 @@ Note: you will be able to see page /portfolio/tht4789 as it is public, but from 
 
 URL to github that shows line of code where research topic(s) are used / implemented
 --- 
-1. Passport.js LocalStrategy Implementation - [from line 8 in /src/lib/passport.js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/0dac7df9557a9f29482e4090e1f76c0ad7d6397d/creativeshowcase/src/lib/passport.js#L8) 
+1. Passport.js LocalStrategy Implementation - [from line 8 in /src/lib/passport.js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L8) 
 2. Next.js Implementations (can really be seen in the whole project)  
-[/pages/portfolio/[slug]](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/0dac7df9557a9f29482e4090e1f76c0ad7d6397d/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L4)  
-[/pages/register.js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/0dac7df9557a9f29482e4090e1f76c0ad7d6397d/creativeshowcase/src/pages/register.js#L3)  
-[/pages/api/register.js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/0dac7df9557a9f29482e4090e1f76c0ad7d6397d/creativeshowcase/src/pages/api/register.js#L12)
+[/pages/portfolio/[slug]](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L11)  
+[/pages/register.js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/pages/register.js#L3)  
+[/pages/api/register.js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/pages/api/register.js#L10)
 
 
 References 
 ---
-1. Passport.js LocalStrategy Implementation - [/src/lib/passport.js from line 8](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/0dac7df9557a9f29482e4090e1f76c0ad7d6397d/creativeshowcase/src/lib/passport.js#L8)  
+1. Passport.js LocalStrategy Implementation - [/src/lib/passport.js from line 6](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L6)  
 Resource - [Passport.js LocalStrategy Implementation](https://www.passportjs.org/packages/passport-local/)  
   
-2. Passport.js Session Documentation - [/src/lib/passport.js from line 25](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/0dac7df9557a9f29482e4090e1f76c0ad7d6397d/creativeshowcase/src/lib/passport.js#L25)  
-Resource - [Passport.js Session Documentation](https://www.passportjs.org/concepts/authentication/sessions/)  
+2. Passport.js Session Documentation - [/src/lib/passport.js from line 25](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L25)  
   
-3. Passport.js Session Documentation - [Middleware Handling within login.js line 14 - middleware included in all api files](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/0dac7df9557a9f29482e4090e1f76c0ad7d6397d/creativeshowcase/src/pages/api/login.js#L16)  
+3. Passport.js Session Documentation - [Middleware Handling within login.js - middleware included in all api files](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/pages/api/login.js#L17)  
 Resource - [Passport.js Session Documentation](https://www.passportjs.org/concepts/authentication/sessions/)  
 3. [Next.js Project Structure Documentation](https://nextjs.org/docs/app/getting-started/project-structure)  
-4. Next.js API Routes Documentation: [/pages/register.js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/0dac7df9557a9f29482e4090e1f76c0ad7d6397d/creativeshowcase/src/pages/register.js#L3) & [/pages/api/register.js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/0dac7df9557a9f29482e4090e1f76c0ad7d6397d/creativeshowcase/src/pages/api/register.js#L12)  
+4. Next.js API Routes Documentation: [/pages/register.js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/pages/register.js#L3) & [/pages/api/register.js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/pages/api/register.js#L10)  
 Resource - [Next.js Routing](https://nextjs.org/docs/pages/building-your-application/routing/api-routes)
