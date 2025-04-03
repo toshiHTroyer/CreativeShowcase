@@ -5,15 +5,20 @@ import passport from '../../lib/passport.js';
 import { User } from '../../models/db.js';
 
 export default async function handler(req, res) {
+  // Handle request
   if (req.method !== 'POST') {
     return res.status(405).json({ error: `Method ${req.method} not allowed.` });
   }
+  // ...login/register/logout logic, 
   await dbConnect();
   return new Promise((resolve, reject) => {
     sessionOptions(req, res, () => {
       passport.initialize()(req, res, () => {
+        //As user navigates from page to page, session authenticated using built-in session strategy
         passport.session()(req, res, () => {
           passport.authenticate('local', async (err, user, info) => {
+          //when the session authenticated, passport will call deserializeUser which sets req.user property
+          //note similar implementations in other api files (me, register, logout, register), but we only need to authenticate the user in login
             if (err) {
               res.status(500).json({ error: 'Internal server error' });
               return reject(err);

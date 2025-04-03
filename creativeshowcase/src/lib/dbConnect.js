@@ -11,6 +11,7 @@ export default async function dbConnect() {
   if (!cached.promise) {
     cached.promise = mongoose.connect(MONGODB_URI);
   }
+  // manual in memory 'cache' of Mongoose Connection
   cached.conn = await cached.promise;
   return cached.conn;
 }

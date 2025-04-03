@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-
+//renders registration form and sends a POST request to the backend when the user submits the form
+//Collects user input (username, email, password, etc.) Then on form submission, sends a POST request to /api/register
+// & passes JSON in request body which is sent with the fetch() call
 export default function Register() {
   const [form, setForm] = useState({
     userName: '',
@@ -15,14 +17,14 @@ export default function Register() {
   async function handleSubmit(e) {
     e.preventDefault();
     const res = await fetch('/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form),
+      method: 'POST', // Use POST to send form data to API route
+      headers: { 'Content-Type': 'application/json' }, //req.body will be parsed as JSON
+      body: JSON.stringify(form), // api route can access parsed body via req.body
       credentials: 'include'
     });
 
     const data = res.headers.get('content-type')?.includes('application/json') ? await res.json() : {};
-    if (res.ok) {
+    if (res.ok) { //After successful form POST, redirect using router.push 
       router.push(`/portfolio/${data.user.portfolioUrl}`);
     } else {
       setError(data.error || 'Registration failed.');

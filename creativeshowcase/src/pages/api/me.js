@@ -1,4 +1,3 @@
-// /api/me.js
 import dbConnect from '../../lib/dbConnect.js';
 import { sessionOptions } from '../../lib/session.js';
 import passport from '../../lib/passport.js';
@@ -19,3 +18,4 @@ export default async function handler(req, res) {
     });
   });
 }
+//checks user log in status =

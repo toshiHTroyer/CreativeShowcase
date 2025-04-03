@@ -1,4 +1,3 @@
-// /api/register.js
 import dbConnect from '../../lib/dbConnect.js';
 import { User, Portfolio } from '../../models/db.js';
 import { sessionOptions } from '../../lib/session.js';
@@ -8,15 +7,19 @@ import bcrypt from 'bcrypt';
 function isValidEmail(email) {
   return email.includes('@') && email.includes('.');
 }
-
+//Everything wrapped in one async function handler(req, res), is what Next.js expects for API Routes in the pages/api directory. 
+//Listens for POST requests from frontend and reads in data through req.body
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: `Method ${req.method} not allowed.` });
   }
-
+  // Process a POST request
+//NOTE: Instead of using .get/.post requests directly (because next-connect was not working as a handler), we are sending POST request here
+//from the front end and making sure that the method is POST as seen above. 
   await dbConnect();
 
   sessionOptions(req, res, () => {
+    //sessionOptions and passport.initialize() are called explicitly and nested to guaraentee middleware completes before authentication/DB logic runs
     passport.initialize()(req, res, () => {
       passport.session()(req, res, async () => {
         const { userName, email, password, focus, isPublic } = req.body;
@@ -49,7 +52,6 @@ export default async function handler(req, res) {
 
           newUser.portfolio = portfolio._id;
           await newUser.save();
-
           req.logIn(newUser, (err) => {
             if (err) {
               return res.status(500).json({ error: 'Login failed after registration.' });
