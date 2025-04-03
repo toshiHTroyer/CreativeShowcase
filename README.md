@@ -1,118 +1,133 @@
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=18790227)
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
 
-(__TODO__: your project name)
-
-# Shoppy Shoperson 
+# CreativeShowcase
 
 ## Overview
+Creating professional portfolios is challenging and time-consuming for busy creative students who need to showcase their work to potential employers. Many default to social media platforms that aren't designed for professional presentation or resort to expensive website builders with steep learning curves. 
 
-(__TODO__: a brief one or two paragraph, high-level description of your project)
-
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
-
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
-
+That's where CreativeShowcase comes in! CreativeShowcase is a web app that allows film, art, and design students to easily build polished portfolio websites without coding knowledge. Users can register and create their personal portfolio space with a custom URL. 
+Once set up, they can upload projects, organize them into categories, and customize their portfolio's appearance. Visitors can browse public portfolios, allowing employers to discover emerging talent while giving students valuable exposure for their work.
 
 ## Data Model
 
-(__TODO__: a description of your application's data and their relationships to each other) 
+The application will store Users, Portfolios, Categories, Settings and Projects
 
-The application will store Users, Lists and Items
-
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
-
-(__TODO__: sample documents)
+* Users can have one portfolio (via references)
+* Portfolios can have many categories (via references) and one setting (by)
+* Each category can have multiple projects (by embedding)
 
 An Example User:
-
 ```javascript
 {
-  username: "shannonshopper",
+  userName: "filmstudent22",
   hash: // a password hash,
-  lists: // an array of references to List documents
+  email: "student@university.edu",
+  portfolio: // reference to a Portfolio document,
 }
 ```
-
-An Example List with Embedded Items:
+An Example Portfolio with Embedded Settings:
 
 ```javascript
 {
-  user: // a reference to a User object
-  name: "Breakfast foods",
-  items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
-  ],
+  user: // reference to a User document,
+  bio: "Film student specializing in documentary filmmaking",
+  specialty: "Film",
+  url: //from slug ie, based off userName
+  portfolioSettings: {
+    isPublic: true,
+    //have not decided if I want to include user being able to choose Portfolio colors in proj scope
+    customColorScheme: {
+      primary: //chosen colors for background
+      secondary: //could be chosen color for header tab
+      accent: //chosen color of borders, etc
+    }
+  },
+  categories: // array of references to Category documents,
+}
+```
+An Example Category with Embedded Projects:
+```javascript
+{
+  user: // reference to a User document,
+  portfolio: // reference to a Portfolio document,
+  name: "Short Films",
+  projects: [{
+    title: 'NYC Shortfilm',
+    description:  'A short film about New York',
+    projectContent: {
+      contentType: 'video',
+      content: //url to short film,
+      caption: 'caption to uploaded film',
+    }
+    createdAt: // timestamp
+    updatedAt: //timestamp
+  }]
   createdAt: // timestamp
+  updatedAt: //timestamp
 }
 ```
 
-
-## [Link to Commented First Draft Schema](db.mjs) 
-
-(__TODO__: create a first draft of your Schemas in db.mjs and link to it)
+## [Link to First Draft Schema](db.mjs) 
 
 ## Wireframes
 
-(__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc.)
 
-/list/create - page for creating a new shopping list
+/login - page for loggin in
 
-![list create](documentation/list-create.png)
+![log in](documentation/LoginPage.png)
 
-/list - page for showing all shopping lists
+/register - page for registering
 
-![list](documentation/list.png)
+![register](documentation/SignupPage.png)
 
-/list/slug - page for showing specific shopping list
+/portfolio/slug - page for showing users specific portfolio
 
-![list](documentation/list-slug.png)
+![portfolio](documentation/Portfolio__slug.png)
 
-## Site map
+/portfolio/settings - settings page for users portfolio
 
-(__TODO__: draw out a site map that shows how pages are related to each other)
+![settings](documentation/Portfolio_Settings.png)
 
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
+/portfolio/category - page for adding a category to users portfolio
 
-## User Stories or Use Cases
+![category](documentation/AddCategory.png)
 
-(__TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://en.wikipedia.org/wiki/Use_case))
+/portfolio/addproject?category=123 - page for adding a project to a category
 
-1. as non-registered user, I can register a new account with the site
-2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+![project](documentation/AddProject.png)
+
+/feed - page for user to see other users public portfolios
+
+![feed](documentation/GlobalFeed.png)
+
+## Site Map
+
+![list](documentation/Portfolioportfolioslug.png)
+
+## Use Cases
+1. As a non-registered user, I want to register a new account with the site so that I can begin building my creative portfolio.
+2. As a user, I want to log in to the site so that I can securely access and update my portfolio.
+3. As a creative professional, I want to create a portfolio with my bio and specialty so that visitors understand my background and expertise.
+4. As an artist, I want to add categories to my portfolio so that I can organize my work by project type or medium.
+5. As a filmmaker, I want to upload projects to my categories so that I can display my videos logically with descriptions and context.
+6. As a hiring manager, I want to browse portfolios by specialty so that I can find artists with relevant skills.
+7. As a student, I want to set my portfolio to public or private so that I can control when my work is ready to be viewed.
+8. As a job-seeking creative, I want to share my portfolio URL so that potential employers can easily view my best work.
 
 ## Research Topics
-
-(__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed)
-
-* (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
-
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit)
+* Next.js (6 points):
+    * Next.js is a React framework that provides server-side rendering and an integrated routing system perfect for portfolio websites with custom URLs. It will enable the CreativeShowcase application to generate portfolio pages for each user with optimized image loading, which is crucial for displaying high-quality creative work efficiently. The file-system based router will also allow for clean /portfolio/[username] URL patterns. 
+* tailwind.css (2 points):
+    *  Tailwind CSS is a utility-first CSS framework that will enable custom portfolio themes without external API dependencies. Its pre-built classes will allow CreativeShowcase users to customize their portfolio's appearance through an abundance of color schemes and layouts. The framework's container queries and grid system will be especially valuable for creating responsive portfolio layouts that showcase projects effectively on all devices regardless of screen size.
+* Jest Unit Testing (3 points):
+  * Jest will help me test critical features of CreativeShowcase to make sure they don't break during development. I'll focus on testing user login/registration, portfolio creation, portfolio public or private settings, and project uploads which are the core functions users depend on. Implementing tests for these critical features will prevent bugs that could compromise user portfolios or cause data loss during the development process.
 
 
 ## [Link to Initial Main Project File](app.mjs) 
 
-(__TODO__: create a skeleton Express application with a package.json, app.mjs, views folder, etc. ... and link to your initial app.mjs)
-
 ## Annotations / References Used
-
-(__TODO__: list any tutorials/references/etc. that you've based your code off of)
-
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
+1. [Mongoose Schema Docs - For Timestamp](https://mongoosejs.com/docs/guide.html)
+2. [Next.js Documentation](https://nextjs.org/)
+3. [Tailwind CSS Documentation](https://tailwindcss.com/)
+4. [Jest Documentation](https://jestjs.io/)
 

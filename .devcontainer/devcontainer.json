@@ -1,0 +1,8 @@
+{
+  "postCreateCommand": "cd creativeshowcase && npm install",
+  "postStartCommand": "cd creativeshowcase && npx pm2 start npm -- run dev && npx pm2 logs",
+  "remoteEnv": {
+    "PORT": "${PORT}",
+    "DSN": "${DSN}"
+  }
+}
