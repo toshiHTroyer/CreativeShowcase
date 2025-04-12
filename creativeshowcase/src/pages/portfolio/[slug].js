@@ -19,7 +19,6 @@ export default function PublicPortfolio() {
         // Fetching the portfolio from route-based API: `/api/portfolio?slug=${query.slug}`
         const res = await fetch(`/api/portfolio?slug=${query.slug}`);
         const data = await res.json();
-
         if (data.error) {
           setError(data.error);
           setLoading(false);
@@ -57,11 +56,33 @@ export default function PublicPortfolio() {
   return (
     <div>
       <h1>Portfolio: {portfolio.user.userName}</h1>
-      <p>Specialty: {portfolio.specialty}</p>
+      <h2>Specialty: {portfolio.specialty}</h2>
+
+      {portfolio.categories?.length > 0 ? (
+            portfolio.categories.map((cat) => (
+              <div key={cat._id}>
+                <h3>{cat.name}</h3>
+                {cat.projects?.length > 0 ? (
+                  <ul>
+                    {cat.projects.map((proj, i) => (
+                      <li key={i}>{proj.title}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No projects yet in this category.</p>
+                )}
+                <form> <a href="/portfolio/project"> <button type="button">Add Projects</button> </a> </form>
+              </div>
+            ))
+          ) : (
+            <p>No categories found.</p>
+      )}
 
       {isOwner ? (
         <div>
           <p>You are the owner of this portfolio.</p>
+
+          <form> <a href="/portfolio/category"> <button type="button">Add a Category</button> </a> </form>
           <button>Edit Portfolio</button>
           <form action="/api/logout" method="POST">
             <button type="submit">Logout</button>
