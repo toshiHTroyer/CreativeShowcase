@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import PortfolioHeader from '../../components/PortfolioHeader';
 
 export default function AddProject() {
   const [user, setUser] = useState(null);
@@ -22,16 +23,12 @@ export default function AddProject() {
         setCategories(catData.portfolio.categories);
       }
     }
-
     fetchData();
   }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!selectedCategory || !projectTitle) {
-      setError('All fields are required');
-      return;
-    }
+    if (!selectedCategory || !projectTitle) return setError('All fields are required');
 
     const res = await fetch('/api/project', {
       method: 'POST',
@@ -52,8 +49,7 @@ export default function AddProject() {
 
   return (
     <div>
-      <h1>Add Project - {user.userName}</h1>
-      <a href={`/portfolio/${user.userName}`}>← Back to Portfolio</a>
+      <PortfolioHeader userName={user.userName} isOwner={true} page="project" />
       <form onSubmit={handleSubmit}>
         <label>
           Choose Category:
