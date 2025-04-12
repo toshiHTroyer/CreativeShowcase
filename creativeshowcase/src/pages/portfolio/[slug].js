@@ -54,44 +54,69 @@ export default function PublicPortfolio() {
   }
 
   return (
-    <div>
-      <h1>Portfolio: {portfolio.user.userName}</h1>
-      <h2>Specialty: {portfolio.specialty}</h2>
+    <body>
+      <div>
+        {!isOwner && (
+          <div className="public-view-notice">
+            <p>This is the public view.</p>
+            <p><a href={`/portfolio/${portfolio.user.userName}`}>Back to Portfolio</a></p>
+          </div>
+        )}
+        <div className="top-bar">
+          {!isOwner && (
+            <div className="public-notice">
+              <p>This is the public view.</p>
+              <p><a href={`/portfolio/${portfolio.user.userName}`}>← Back to Portfolio</a></p>
+            </div>
+          )}
 
-      {portfolio.categories?.length > 0 ? (
-            portfolio.categories.map((cat) => (
-              <div key={cat._id}>
-                <h3>{cat.name}</h3>
-                {cat.projects?.length > 0 ? (
-                  <ul>
-                    {cat.projects.map((proj, i) => (
-                      <li key={i}>{proj.title}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p>No projects yet in this category.</p>
-                )}
-                <form> <a href="/portfolio/project"> <button type="button">Add Projects</button> </a> </form>
+          <div className="top-bar-content">
+            {/* Left buttons */}
+            {isOwner && (
+              <div className="top-bar-left">
+                <a href="/portfolio/category"><button type="button">Add Category</button></a>
+                <a href="/portfolio/project"><button type="button">Add Project</button></a>
               </div>
-            ))
-          ) : (
-            <p>No categories found.</p>
-      )}
+            )}
 
-      {isOwner ? (
-        <div>
-          <p>You are the owner of this portfolio.</p>
+            {/* Centered text */}
+            <div className="portfolio-text">
+              <h1 className="portfolio-title">Portfolio: {portfolio.user.userName}</h1>
+              <h2 className="portfolio-specialty">Specialty: {portfolio.specialty}</h2>
+            </div>
 
-          <form> <a href="/portfolio/category"> <button type="button">Add a Category</button> </a> </form>
-          <button>Edit Portfolio</button>
-          <form action="/api/logout" method="POST">
-            <button type="submit">Logout</button>
-          </form>
+            {/* Right buttons */}
+            {isOwner && (
+              <div className="top-bar-right">
+                <button>Edit Portfolio</button>
+                <form action="/api/logout" method="POST" style={{ display: 'inline' }}>
+                  <button type="submit">Logout</button>
+                </form>
+              </div>
+            )}
+          </div>
         </div>
-      ) : (
-        <p>This is the public view.</p>
-      )}
-    </div>
+
+        {portfolio.categories?.length > 0 ? (
+              portfolio.categories.map((cat) => (
+                <div key={cat._id} className="category-box">
+                  <h3 className="category-title">{cat.name}</h3>
+                  {cat.projects?.length > 0 ? (
+                    <ul className="project-list">
+                      {cat.projects.map((proj, i) => (
+                        <li key={i} className="project-item">{proj.title}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="no-projects">No projects yet in this category.</p>
+                  )}
+                </div>
+              ))
+            ) : (
+              <p>No categories found.</p>
+        )}
+      </div>
+    </body>
   );
 }
 //user gets different view of portfolios depending on if they are the owner or not
