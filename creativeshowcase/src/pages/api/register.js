@@ -23,6 +23,7 @@ export default async function handler(req, res) {
     passport.initialize()(req, res, () => {
       passport.session()(req, res, async () => {
         const { userName, email, password, focus, isPublic } = req.body;
+        const capitalizedFocus = focus.charAt(0).toUpperCase() + focus.slice(1);
 
         if (!userName || userName.length < 6) {
           return res.status(400).json({ error: 'Username must be at least 6 characters long.' });
@@ -45,7 +46,7 @@ export default async function handler(req, res) {
           const portfolio = new Portfolio({
             user: newUser._id,
             url: userName,
-            specialty: focus,
+            specialty: capitalizedFocus,
             portfolioSettings: { isPublic },
           });
           await portfolio.save();

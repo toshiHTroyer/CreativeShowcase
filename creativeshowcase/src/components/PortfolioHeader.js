@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function PortfolioHeader({ userName, isOwner, page = 'portfolio' }) {
+export default function PortfolioHeader({ userName, specialty, isOwner, page = 'portfolio' }) {
   return (
     <div className="top-bar">
       <div className="top-bar-content">
@@ -8,18 +8,18 @@ export default function PortfolioHeader({ userName, isOwner, page = 'portfolio' 
         <div className="top-bar-left">
           {page === 'portfolio' && isOwner && (
             <>
-              <Link href="/portfolio/category"><button>Add Category</button></Link>
-              <Link href="/portfolio/project"><button>Add Project</button></Link>
+              <a href="/portfolio/category">Add Category</a>
+              <a href="/portfolio/project">Add Project</a>
             </>
           )}
           {page !== 'portfolio' && (
-            <Link href={`/portfolio/${userName}`}><button>← Back to Portfolio</button></Link>
+            <a href={`/portfolio/${userName}`}> Back to Portfolio </a>
           )}
         </div>
 
         {/* Center Text */}
         <div className="portfolio-text">
-          <h1 className="portfolio-title">Portfolio: {userName}</h1>
+          <h1 className="portfolio-title"> {specialty} Portfolio: {userName}</h1>
         </div>
 
         {/* Right Side */}
