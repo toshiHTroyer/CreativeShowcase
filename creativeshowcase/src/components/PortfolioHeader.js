@@ -1,35 +1,55 @@
+PortfolioHeader
+
 import Link from 'next/link';
 
-export default function PortfolioHeader({ userName, specialty, isOwner, page = 'portfolio' }) {
+export default function PortfolioHeader({ isOwner, userName }) {
+  const portfolioUrl = `/portfolio/${userName}`;
+
   return (
-    <div className="top-bar">
-      <div className="top-bar-content">
-        {/* Left Side */}
-        <div className="top-bar-left">
-          {page === 'portfolio' && isOwner && (
+    <header className="w-full bg-white border-b border-gray-200 shadow-sm">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Left: Brand Name links to user portfolio */}
+        <Link
+          href={portfolioUrl}
+          className="text-2xl font-bold text-indigo-600 tracking-tight"
+        >
+          Creative Showcase
+        </Link>
+
+        {/* Right: Action Buttons (only if owner) */}
+        <div className="flex items-center gap-3">
+          {isOwner && (
             <>
-              <a href="/portfolio/category">Add Category</a>
-              <a href="/portfolio/project">Add Project</a>
+              <Link
+                href="/portfolio/category"
+                className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 transition"
+              >
+                Add Category
+              </Link>
+              <Link
+                href="/portfolio/project"
+                className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 transition"
+              >
+                Add Project
+              </Link>
+              <button
+                className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 transition"
+              >
+                Edit Portfolio
+              </button>
             </>
           )}
-          {page !== 'portfolio' && (
-            <a href={`/portfolio/${userName}`}> Back to Portfolio </a>
-          )}
-        </div>
 
-        {/* Center Text */}
-        <div className="portfolio-text">
-          <h1 className="portfolio-title"> {specialty} Portfolio: {userName}</h1>
-        </div>
-
-        {/* Right Side */}
-        <div className="top-bar-right">
-          {page === 'portfolio' && isOwner && <button>Edit Portfolio</button>}
-          <form action="/api/logout" method="POST" style={{ display: 'inline' }}>
-            <button type="submit">Logout</button>
+          <form action="/api/logout" method="POST">
+            <button
+              type="submit"
+              className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 transition"
+            >
+              Logout
+            </button>
           </form>
         </div>
       </div>
-    </div>
+    </header>
   );
-} 
+}
