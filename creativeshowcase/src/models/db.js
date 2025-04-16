@@ -17,16 +17,16 @@ const UserSchema = new mongoose.Schema({
 const PortfolioSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   bio: String,
+  bioImage: String,
   specialty: String,
-  coverImage: String,
   url: { type: String, required: true },
+  links: {
+    linkedin: String,
+    website: String,
+    instagram: String,
+  },
   portfolioSettings: {
     isPublic: { type: Boolean, default: true },
-    customColorScheme: {
-      primary: String,
-      secondary: String,
-      accent: String,
-    }
   },
   categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }]
 });

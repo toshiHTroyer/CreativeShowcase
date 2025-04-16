@@ -52,38 +52,63 @@ export default function PublicPortfolio() {
 
   return (
     <div className="bg-[#f9f9ff] min-h-screen">
-      <PortfolioHeader
-        isOwner={isOwner}
-        userName={portfolio.user.userName}
-      />
+      <PortfolioHeader userName={portfolio.user.userName} isOwner={true}/>
   
       {/* Two-column layout */}
       <div className="flex max-w-7xl mx-auto px-4 py-10 gap-8">
         {/* LEFT: Sticky Bio Sidebar */}
         <aside className="w-64 shrink-0 sticky top-24 h-fit bg-white border border-gray-200 rounded-xl shadow-sm p-4">
-          {/* Placeholder profile image */}
+          {/* Actual bio image or placeholder */}
           <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
             <img
-              src="https://via.placeholder.com/96"
-              alt=""
+              src={portfolio.bioImage || '/default-profile.png'}
+              alt={`${portfolio.user.userName}'s bio image`}
               className="w-full h-full object-cover rounded-full"
             />
           </div>
-  
-          {/* Placeholder user name */}
+
+          {/* Username */}
           <h2 className="text-center font-semibold text-lg text-gray-800 mb-2">
             {portfolio.user.userName}
           </h2>
-  
-          {/* Placeholder bio */}
+
+          {/* Actual bio */}
           <p className="text-sm text-gray-600 text-center mb-4">
-            Creative enthusiast. Passionate about design and technology.
+            {portfolio.bio || 'No bio yet. Click Edit Portfolio to add one!'}
           </p>
-  
-          {/* Placeholder links */}
-          <div className="flex justify-center gap-3">
-            <a href="https://github.com/toshiHTroyer" className="text-sm text-indigo-600 hover:underline">Website</a>
-            <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_nav-header-signin" className="text-sm text-indigo-600 hover:underline">LinkedIn</a>
+
+          {/* Actual links */}
+          <div className="flex flex-col items-center gap-1">
+            {portfolio.links?.website && (
+              <a
+                href={portfolio.links.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-indigo-600 hover:underline"
+              >
+                Website
+              </a>
+            )}
+            {portfolio.links?.linkedin && (
+              <a
+                href={portfolio.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-indigo-600 hover:underline"
+              >
+                LinkedIn
+              </a>
+            )}
+            {portfolio.links?.instagram && (
+              <a
+                href={portfolio.links.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-indigo-600 hover:underline"
+              >
+                Instagram
+              </a>
+            )}
           </div>
         </aside>
   

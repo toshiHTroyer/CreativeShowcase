@@ -1,5 +1,3 @@
-PortfolioHeader
-
 import Link from 'next/link';
 
 export default function PortfolioHeader({ isOwner, userName }) {
@@ -24,19 +22,21 @@ export default function PortfolioHeader({ isOwner, userName }) {
                 href="/portfolio/category"
                 className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 transition"
               >
-                Add Category
+                Add a Category
               </Link>
               <Link
                 href="/portfolio/project"
                 className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 transition"
               >
-                Add Project
+                Add a Project
               </Link>
-              <button
+
+              <Link
+                href="/portfolio/settings"
                 className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 transition"
               >
                 Edit Portfolio
-              </button>
+              </Link>
             </>
           )}
 
