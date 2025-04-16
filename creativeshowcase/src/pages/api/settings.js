@@ -1,6 +1,5 @@
 // pages/api/settings.js
 import formidable from 'formidable';
-import fs from 'fs';
 import path from 'path';
 import dbConnect from '../../lib/dbConnect';
 import { sessionOptions } from '../../lib/session';
@@ -26,38 +25,27 @@ export default async function handler(req, res) {
         const user = req.user;
         if (!user) return res.status(401).json({ error: 'Unauthorized' });
 
-        const uploadDir = path.join(process.cwd(), 'public/uploads');
-        fs.mkdirSync(uploadDir, { recursive: true });
-
         const form = formidable({
           multiples: false,
-          uploadDir,
+          uploadDir: path.join(process.cwd(), 'public/uploads'),
           keepExtensions: true,
-          filename: (name, ext, part, form) => {
-            const timestamp = Date.now();
-            const safeExt = ext.startsWith('.') ? ext : `.${ext}`;
-            return `user-${user._id}-${timestamp}${safeExt}`;
-          },
         });
 
         form.parse(req, async (err, fields, files) => {
           if (err) {
-            console.error('Formidable parse error:', err);
-            return res.status(500).json({ error: 'File parsing error' });
+            console.error('Formidable error:', err);
+            return res.status(500).json({ error: 'Error parsing form' });
           }
 
-          // Normalize string fields
-          const getField = (field) => Array.isArray(field) ? field[0] : field || '';
-
-          const bio = getField(fields.bio);
-          const linkedin = getField(fields.linkedin);
-          const website = getField(fields.website);
-          const instagram = getField(fields.instagram);
+          const bio = fields.bio?.[0] || '';
+          const linkedin = fields.linkedin?.[0] || '';
+          const website = fields.website?.[0] || '';
+          const instagram = fields.instagram?.[0] || '';
           const bioImageFile = files.bioImage;
 
           let bioImagePath = null;
-          if (bioImageFile && bioImageFile.newFilename) {
-            bioImagePath = `/uploads/${bioImageFile.newFilename}`;
+          if (bioImageFile && bioImageFile[0]?.newFilename) {
+            bioImagePath = `/uploads/${bioImageFile[0].newFilename}`;
           }
 
           try {
@@ -65,11 +53,8 @@ export default async function handler(req, res) {
             if (!portfolio) return res.status(404).json({ error: 'Portfolio not found' });
 
             portfolio.bio = bio;
-            portfolio.links = {
-              linkedin,
-              website,
-              instagram,
-            };
+            portfolio.links = { linkedin, website, instagram };
+
             if (bioImagePath) {
               portfolio.bioImage = bioImagePath;
             }

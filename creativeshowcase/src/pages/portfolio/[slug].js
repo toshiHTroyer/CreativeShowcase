@@ -71,13 +71,7 @@ export default function PublicPortfolio() {
             {portfolio.user.userName}
           </h2>
 
-          {/* Actual bio */}
-          <p className="text-sm text-gray-600 text-center mb-4">
-            {portfolio.bio || 'No bio yet. Click Edit Portfolio to add one!'}
-          </p>
-
-          {/* Actual links */}
-          <div className="flex flex-col items-center gap-1">
+          <div className="flex justify-center items-center gap-x-3 mb-4">
             {portfolio.links?.website && (
               <a
                 href={portfolio.links.website}
@@ -109,6 +103,12 @@ export default function PublicPortfolio() {
               </a>
             )}
           </div>
+
+          {/* Actual bio */}
+          <p className="text-sm text-gray-600 text-center mb-4">
+            {portfolio.bio || 'No bio yet. Click Edit Portfolio to add one!'}
+          </p>
+
         </aside>
   
         {/* RIGHT: Categories and Projects */}

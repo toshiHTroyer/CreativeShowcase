@@ -35,7 +35,7 @@ export default function PortfolioHeader({ isOwner, userName }) {
                 href="/portfolio/settings"
                 className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 transition"
               >
-                Edit Portfolio
+                Portfolio Settings
               </Link>
             </>
           )}

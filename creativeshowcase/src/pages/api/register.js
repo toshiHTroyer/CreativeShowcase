@@ -47,6 +47,7 @@ export default async function handler(req, res) {
             user: newUser._id,
             url: userName,
             specialty: capitalizedFocus,
+            bioImage: '/default-profile.png',
             portfolioSettings: { isPublic },
           });
           await portfolio.save();
