@@ -60,11 +60,10 @@ export default function PublicPortfolio() {
         <aside className="w-64 shrink-0 sticky top-24 h-fit bg-white border border-gray-200 rounded-xl shadow-sm p-4">
           {/* Actual bio image or placeholder */}
           <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
-            <img
-              src={portfolio.bioImage || '/default-profile.png'}
-              alt={`${portfolio.user.userName}'s bio image`}
-              className="w-full h-full object-cover rounded-full"
-            />
+          <img
+            src={portfolio.bioImage || '/default-profile.png'}
+            className="w-full h-full object-cover rounded-full"
+          />
           </div>
 
           {/* Username */}

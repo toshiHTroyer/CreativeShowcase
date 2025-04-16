@@ -5,7 +5,7 @@
   "/portfolio/[slug]": "pages/portfolio/[slug].js",
   "/portfolio/settings": "pages/portfolio/settings.js",
   "/": "pages/index.js",
+  "/api/login": "pages/api/login.js",
   "/api/me": "pages/api/me.js",
-  "/api/portfolio": "pages/api/portfolio.js",
-  "/api/settings": "pages/api/settings.js"
+  "/api/portfolio": "pages/api/portfolio.js"
 }

@@ -41,14 +41,22 @@ export default function PortfolioSettings() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
+  
+    const formData = new FormData();
+    formData.append('bio', form.bio);
+    formData.append('linkedin', form.links.linkedin);
+    formData.append('website', form.links.website);
+    formData.append('instagram', form.links.instagram);
+    if (bioImageFile) {
+      formData.append('bioImage', bioImageFile);
+    }
+  
     const res = await fetch('/api/settings', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      body: formData,
       credentials: 'include',
-      body: JSON.stringify(form),
     });
-
+  
     const data = await res.json();
     if (res.ok) {
       router.push(`/portfolio/${user.userName}`);
