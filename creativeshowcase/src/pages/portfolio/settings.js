@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import PortfolioHeader from '../../components/PortfolioHeader';
 
 export default function PortfolioSettings() {
@@ -9,7 +9,8 @@ export default function PortfolioSettings() {
       linkedin: '',
       website: '',
       instagram: ''
-    }
+    },
+    isPublic: true,
   });
   const [bioImageFile, setBioImageFile] = useState(null);
   const [user, setUser] = useState(null);
@@ -32,7 +33,8 @@ export default function PortfolioSettings() {
             linkedin: '',
             website: '',
             instagram: ''
-          }
+          },
+          isPublic: portfolioData.portfolio.portfolioSettings?.isPublic ?? true,
         });
       }
     }
@@ -41,7 +43,7 @@ export default function PortfolioSettings() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-  
+
     const formData = new FormData();
     formData.append('bio', form.bio);
     formData.append('linkedin', form.links.linkedin);
@@ -50,13 +52,13 @@ export default function PortfolioSettings() {
     if (bioImageFile) {
       formData.append('bioImage', bioImageFile);
     }
-  
+    formData.append('isPublic', form.isPublic.toString());
     const res = await fetch('/api/settings', {
       method: 'POST',
       body: formData,
       credentials: 'include',
     });
-  
+
     const data = await res.json();
     if (res.ok) {
       router.push(`/portfolio/${user.userName}`);
@@ -81,8 +83,8 @@ export default function PortfolioSettings() {
     <div className="bg-[#f9f9ff] min-h-screen h-screen overflow-hidden">
       <PortfolioHeader userName={user.userName} isOwner={true} />
 
-      <div className="max-w-4xl mx-auto px-4 py-10">
-        <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
+      <div className="max-w-4xl mx-auto py-4">
+        <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4">
           <h1 className="text-2xl font-semibold text-indigo-700 text-center mb-6">Edit Portfolio Settings</h1>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -134,6 +136,19 @@ export default function PortfolioSettings() {
                 onChange={e => updateLink('instagram', e.target.value)}
                 className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
               />
+            </div>
+
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="isPublic"
+                checked={form.isPublic}
+                onChange={e => setForm(prev => ({ ...prev, isPublic: e.target.checked }))}
+                className="mr-2"
+              />
+              <label htmlFor="isPublic" className="text-sm text-gray-700">
+                Portfolio is Public
+              </label>
             </div>
 
             {error && <p className="text-red-600 text-sm text-center">{error}</p>}

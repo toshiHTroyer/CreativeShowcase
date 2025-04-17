@@ -16,7 +16,7 @@ export default function Login() {
       body: JSON.stringify(form),
       credentials: 'include',
     });
-
+    
     if (res.ok) {
       const { user } = await res.json();
       router.push(`/portfolio/${user.portfolioUrl}`);
@@ -29,7 +29,7 @@ return (
   <div className="flex flex-col h-screen overflow-hidden">
     <PublicHeader />
     <div className="h-screen overflow-hidden flex flex-col items-center justify-center items-center bg-[#f6f6ff] px-4">
-      <div className="text-center">
+      <div className="top-5 text-center">
         <h2 className="text-2xl md:text-3xl font-semibold text-purple-600 font-sans mb-6">
           Welcome to your Creative Community
         </h2>

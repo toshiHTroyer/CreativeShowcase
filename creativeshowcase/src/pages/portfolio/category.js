@@ -1,4 +1,3 @@
-// src/pages/portfolio/category.js
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import PortfolioHeader from '../../components/PortfolioHeader';
@@ -7,7 +6,7 @@ export default function AddCategory() {
   const [categoryName, setCategoryName] = useState('');
   const [user, setUser] = useState(null);
   const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -22,6 +21,9 @@ export default function AddCategory() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (submitting || !categoryName.trim()) return;
+    setSubmitting(true);
+
     const res = await fetch('/api/category', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -31,11 +33,11 @@ export default function AddCategory() {
 
     const data = await res.json();
     if (res.ok) {
-      setTimeout(() => router.push(`/portfolio/${user.userName}`), 1000);
-      setError('');
       setCategoryName('');
+      router.push(`/portfolio/${user.userName}`);
     } else {
       setError(data.error || 'Failed to Create Category');
+      setSubmitting(false);
     }
   }
 
@@ -52,12 +54,12 @@ export default function AddCategory() {
             value={categoryName}
             onChange={(e) => setCategoryName(e.target.value)}
             placeholder="Enter Category Title*"
+            disabled={submitting}
           />
         </label>
         <br />
         {error && <p>{error}</p>}
-        {message && <p>{message}</p>}
-        <button type="submit">Save Category</button>
+        <button type="submit" disabled={submitting}>Save Category</button>
       </form>
     </div>
   );

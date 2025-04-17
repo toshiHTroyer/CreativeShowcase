@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import PortfolioHeader from '../../components/PortfolioHeader';
 
 export default function PublicPortfolio() {
-  const { query } = useRouter();
+  const { query, reload } = useRouter();
   const [portfolio, setPortfolio] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState('');
@@ -18,7 +18,7 @@ export default function PublicPortfolio() {
           fetch(`/api/portfolio?slug=${query.slug}`),
           fetch('/api/me')
         ]);
-        
+
         const portfolioData = await portfolioRes.json();
         const userData = await userRes.json();
 
@@ -39,6 +39,27 @@ export default function PublicPortfolio() {
     fetchData();
   }, [query.slug]);
 
+  async function handleDeleteCategory(id) {
+    const confirmed = confirm('Are you sure you want to delete this category?');
+    //confirm like alert
+    if (!confirmed) return;
+
+    try {
+      const res = await fetch(`/api/category/${id}`, {
+        method: 'DELETE',
+        credentials: 'include'
+      });
+      const data = await res.json();
+      if (res.ok) {
+        location.reload();
+      } else {
+        alert(data.error || 'Failed to delete category');
+      }
+    } catch (e) {
+      alert('An error occurred');
+    }
+  }
+
   if (loading) return <div className="p-6 text-center text-gray-500">Loading...</div>;
   if (error) return <div className="p-6 text-center text-red-500">{error}</div>;
   if (!portfolio) return <div className="p-6 text-center text-gray-500">Portfolio does not exist.</div>;
@@ -53,74 +74,52 @@ export default function PublicPortfolio() {
   return (
     <div className="bg-[#f9f9ff] min-h-screen">
       <PortfolioHeader userName={portfolio.user.userName} isOwner={true}/>
-  
-      {/* Two-column layout */}
+
       <div className="flex max-w-7xl mx-auto px-4 py-10 gap-8">
-        {/* LEFT: Sticky Bio Sidebar */}
-        <aside className="w-64 shrink-0 sticky top-24 h-fit bg-white border border-gray-200 rounded-xl shadow-sm p-4">
-          {/* Actual bio image or placeholder */}
-          <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
-          <img
-            src={portfolio.bioImage || '/default-profile.png'}
-            className="w-full h-full object-cover rounded-full"
-          />
+        <aside className="w-64 shrink-0 top-24 h-fit bg-white border border-gray-200 rounded-xl shadow-sm p-4">
+          <div className="w-35 h-35 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
+            <img
+              src={portfolio.bioImage || '/default-profile.png'}
+              className="w-full h-full object-cover rounded-full"
+            />
           </div>
 
-          {/* Username */}
           <h2 className="text-center font-semibold text-lg text-gray-800 mb-2">
             {portfolio.user.userName}
           </h2>
 
           <div className="flex justify-center items-center gap-x-3 mb-4">
             {portfolio.links?.website && (
-              <a
-                href={portfolio.links.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-indigo-600 hover:underline"
-              >
-                Website
-              </a>
+              <a href={portfolio.links.website} target="_blank" rel="noopener noreferrer" className="text-sm text-indigo-600 hover:underline">Website</a>
             )}
             {portfolio.links?.linkedin && (
-              <a
-                href={portfolio.links.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-indigo-600 hover:underline"
-              >
-                LinkedIn
-              </a>
+              <a href={portfolio.links.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm text-indigo-600 hover:underline">LinkedIn</a>
             )}
             {portfolio.links?.instagram && (
-              <a
-                href={portfolio.links.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-indigo-600 hover:underline"
-              >
-                Instagram
-              </a>
+              <a href={portfolio.links.instagram} target="_blank" rel="noopener noreferrer" className="text-sm text-indigo-600 hover:underline">Instagram</a>
             )}
           </div>
 
-          {/* Actual bio */}
-          <p className="text-sm text-gray-600 text-center mb-4">
+          <p className="text-sm text-gray-600 mb-4">
             {portfolio.bio || 'No bio yet. Click Edit Portfolio to add one!'}
           </p>
-
         </aside>
-  
-        {/* RIGHT: Categories and Projects */}
+
         <main className="flex-1">
           {portfolio.categories?.length > 0 ? (
             portfolio.categories.map(cat => (
-              <section
-                key={cat._id}
-                className="bg-white border border-gray-200 rounded-xl shadow-sm mb-8 p-6 transition hover:shadow-md"
-              >
-                <h2 className="text-xl font-semibold text-indigo-700 mb-4">{cat.name}</h2>
-  
+              <section key={cat._id} className="bg-white border border-gray-200 rounded-xl shadow-sm mb-8 p-6 transition hover:shadow-md">
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-xl font-semibold text-indigo-700">{cat.name}</h2>
+                  {isOwner && (
+                    <button
+                      onClick={() => handleDeleteCategory(cat._id)}
+                      className="text-sm text-red-600 border border-red-600 px-2 py-1 rounded hover:bg-red-50"
+                    >
+                      Delete Category
+                    </button>
+                  )}
+                </div>
                 {cat.projects?.length > 0 ? (
                   <ul className="list-disc pl-6 space-y-2">
                     {cat.projects.map((proj, i) => (
@@ -128,7 +127,7 @@ export default function PublicPortfolio() {
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-sm text-gray-500 italic">No projects yet in this category.</p>
+                  <p className="text-sm text-gray-500 italic"> No projects yet in this category.</p>
                 )}
               </section>
             ))

@@ -8,6 +8,7 @@ export default function AddProject() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [projectTitle, setProjectTitle] = useState('');
   const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -29,7 +30,9 @@ export default function AddProject() {
   async function handleSubmit(e) {
     e.preventDefault();
     if (!selectedCategory || !projectTitle) return setError('All fields are required');
+    if (submitting) return;
 
+    setSubmitting(true);
     const res = await fetch('/api/project', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -38,6 +41,7 @@ export default function AddProject() {
     });
 
     const data = await res.json();
+    setSubmitting(false);
     if (res.ok) {
       router.push(`/portfolio/${user.userName}`);
     } else {
@@ -53,7 +57,7 @@ export default function AddProject() {
       <form onSubmit={handleSubmit}>
         <label>
           Choose Category:
-          <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+          <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)} disabled={submitting}>
             <option value="">--Select--</option>
             {categories.map(cat => (
               <option key={cat._id} value={cat._id}>{cat.name}</option>
@@ -68,11 +72,12 @@ export default function AddProject() {
             value={projectTitle}
             onChange={(e) => setProjectTitle(e.target.value)}
             placeholder="Enter project name"
+            disabled={submitting}
           />
         </label>
         <br />
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit">Save Project</button>
+        <button type="submit" disabled={submitting}>Save Project</button>
       </form>
     </div>
   );

@@ -1,6 +1,6 @@
-// pages/api/settings.js
 import formidable from 'formidable';
 import path from 'path';
+import fs from 'fs';
 import dbConnect from '../../lib/dbConnect';
 import { sessionOptions } from '../../lib/session';
 import passport from '../../lib/passport';
@@ -37,13 +37,18 @@ export default async function handler(req, res) {
             return res.status(500).json({ error: 'Error parsing form' });
           }
 
-          const bio = fields.bio?.[0] || '';
-          const linkedin = fields.linkedin?.[0] || '';
-          const website = fields.website?.[0] || '';
-          const instagram = fields.instagram?.[0] || '';
-          const bioImageFile = files.bioImage;
+          const getField = (field) => Array.isArray(field) ? field[0] : field || '';
 
+          const bio = getField(fields.bio);
+          const linkedin = getField(fields.linkedin);
+          const website = getField(fields.website);
+          const instagram = getField(fields.instagram);
+          const isPublicRaw = getField(fields.isPublic);
+          const isPublic = isPublicRaw === 'true' || isPublicRaw === true;
+
+          const bioImageFile = files.bioImage;
           let bioImagePath = null;
+
           if (bioImageFile && bioImageFile[0]?.newFilename) {
             bioImagePath = `/uploads/${bioImageFile[0].newFilename}`;
           }
@@ -54,6 +59,7 @@ export default async function handler(req, res) {
 
             portfolio.bio = bio;
             portfolio.links = { linkedin, website, instagram };
+            portfolio.portfolioSettings.isPublic = isPublic;
 
             if (bioImagePath) {
               portfolio.bioImage = bioImagePath;

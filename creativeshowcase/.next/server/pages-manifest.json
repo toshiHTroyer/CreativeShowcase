@@ -4,8 +4,9 @@
   "/_document": "pages/_document.js",
   "/portfolio/[slug]": "pages/portfolio/[slug].js",
   "/portfolio/settings": "pages/portfolio/settings.js",
-  "/api/portfolio": "pages/api/portfolio.js",
+  "/api/logout": "pages/api/logout.js",
+  "/": "pages/index.js",
+  "/api/login": "pages/api/login.js",
   "/api/me": "pages/api/me.js",
-  "/api/settings": "pages/api/settings.js",
-  "/portfolio/project": "pages/portfolio/project.js"
+  "/api/portfolio": "pages/api/portfolio.js"
 }
