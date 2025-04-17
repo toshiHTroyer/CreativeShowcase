@@ -35,7 +35,7 @@ URL(s) to github repository with commits that show progress on research
 --- 
 1. [Tailwind CSS in Public Header Component](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/d3b3fcb2fe5f8c5b4f06edc573957594b29a2770/creativeshowcase/src/components/PublicHeader.js#L1)  
 2. [Tailwind CSS in [slug].js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/795954fda8e7ddbf1fd9e5b113fe3b46cffe46ff/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L76)  
-[Tailwind References from Tailwind Site Documentation](https://tailwindcss.com/docs/columns)
+[Tailwind References from Tailwind Site Documentation](https://tailwindcss.com/docs/installation/using-vite)
 
 References 
 ---
