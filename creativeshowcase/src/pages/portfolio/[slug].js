@@ -60,7 +60,7 @@ export default function PublicPortfolio() {
       alert('An error occurred');
     }
   }
-  
+
   if (loading) return <div className="p-6 text-center text-gray-500">Loading...</div>;
   if (error) return <div className="p-6 text-center text-red-500">{error}</div>;
   if (!portfolio) return <div className="p-6 text-center text-gray-500">Portfolio does not exist.</div>;
@@ -74,15 +74,19 @@ export default function PublicPortfolio() {
 
   return (
     <div className="bg-[#f7fcfa] min-h-screen">
+      {/* light green background, ensures page fills screen height */}
       <PortfolioHeader userName={portfolio.user.userName} isOwner={true}/>
 
       <div className="flex max-w-7xl mx-auto px-4 py-10 gap-8">
+        {/* flex layout for sidebar/bio + main content, mx-auto centers the whole row */}
         <aside className="w-64 shrink-0 top-24 h-fit bg-white border border-gray-300 rounded-xl shadow-lg p-4">
+          {/* h-fit allows height to match content, fixed width sidebar (w-64), won't shrink on flex shrink*/}
           <div className="w-35 h-35 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
             <img
               src={portfolio.bioImage || '/default-profile.png'}
               className="w-full h-full object-cover rounded-full"
             />
+            {/* circular via rounded-full */}
           </div>
 
           <h2 className="text-center font-semibold text-lg text-gray-800 mb-2">
@@ -95,7 +99,7 @@ export default function PublicPortfolio() {
             )}
             {portfolio.links?.linkedin && (
               <a href={portfolio.links.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm text-emerald-800 hover:underline">LinkedIn</a>
-            )}
+            )} {/*Open link in a new browser tab w target, rel for security risks & performance */}
             {portfolio.links?.instagram && (
               <a href={portfolio.links.instagram} target="_blank" rel="noopener noreferrer" className="text-sm text-emerald-800 hover:underline">Instagram</a>
             )}
@@ -111,6 +115,7 @@ export default function PublicPortfolio() {
             portfolio.categories.map(cat => (
               <section key={cat._id} className="relative bg-white border border-gray-300 rounded-xl shadow-lg mb-8 p-6 transition hover:shadow-md">
                 <div className="flex justify-between items-center mb-4">
+                  {/* row layout: title left, delete button right */}
                   <h2 className="text-xl font-semibold text-emerald-700">{cat.name}</h2>
                   {isOwner && (
                     <button
@@ -120,7 +125,7 @@ export default function PublicPortfolio() {
                       Delete Category
                     </button>
                   )}
-                </div>
+                </div> {/* bulleted list with left padding */}
                 {cat.projects?.length > 0 ? (
                   <ul className="list-disc pl-6 space-y-2">
                     {cat.projects.map((proj, i) => (
