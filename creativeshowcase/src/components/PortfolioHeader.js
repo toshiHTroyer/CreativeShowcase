@@ -6,7 +6,7 @@ export default function PortfolioHeader({ isOwner, userName }) {
   return (
     <header className="w-full bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Left: Brand Name links to user portfolio */}
+        {/* max-w sets fixed width and pushes elems towards rightm, mx-auto centers the element horizontally, items pushed to the far left/ right, with space between (justify-between_))*/}
         <Link
           href={portfolioUrl}
           className="text-2xl font-bold text-emerald-700 tracking-tight"
@@ -14,7 +14,7 @@ export default function PortfolioHeader({ isOwner, userName }) {
           Creative Showcase
         </Link>
 
-        {/* Right: Action Buttons (only if owner) */}
+        {/* buttons, flex row setup*/}
         <div className="flex items-center gap-3">
           {isOwner && (
             <>
