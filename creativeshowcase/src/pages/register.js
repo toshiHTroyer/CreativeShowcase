@@ -77,6 +77,7 @@ export default function Register() {
           onChange={e => setForm({ ...form, focus: e.target.value })}
           className="w-full p-2 mb-4 border-2 border-green-600 rounded focus:outline-none focus:ring-2 focus:ring-green-400"
         />
+        {/*focus:ring adds a 2px ring around the element when focused*/}
 
         <label className="flex items-center gap-2 text-sm text-gray-700 mb-4">
           <input
