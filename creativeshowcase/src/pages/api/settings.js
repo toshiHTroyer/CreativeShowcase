@@ -6,6 +6,7 @@ import { sessionOptions } from '../../lib/session';
 import passport from '../../lib/passport';
 import { Portfolio } from '../../models/db';
 
+//config from link 
 export const config = {
   api: {
     bodyParser: false,
@@ -24,7 +25,7 @@ export default async function handler(req, res) {
       passport.session()(req, res, async () => {
         const user = req.user;
         if (!user) return res.status(401).json({ error: 'Unauthorized' });
-
+        //formidable Node.js module for parsing form data for upload file
         const form = formidable({
           multiples: false,
           uploadDir: path.join(process.cwd(), 'public/uploads'),

@@ -2,11 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/portfolio/[slug]": "pages/portfolio/[slug].js",
-  "/portfolio/settings": "pages/portfolio/settings.js",
-  "/api/logout": "pages/api/logout.js",
   "/": "pages/index.js",
-  "/api/login": "pages/api/login.js",
-  "/api/me": "pages/api/me.js",
-  "/api/portfolio": "pages/api/portfolio.js"
+  "/portfolio/[slug]": "pages/portfolio/[slug].js",
+  "/api/portfolio": "pages/api/portfolio.js",
+  "/api/me": "pages/api/me.js"
 }

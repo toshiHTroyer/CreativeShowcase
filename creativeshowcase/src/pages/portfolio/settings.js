@@ -32,7 +32,7 @@ export default function PortfolioSettings() {
           links: portfolioData.portfolio.links || {
             linkedin: '',
             website: '',
-            instagram: ''
+            instagram: '',
           },
           isPublic: portfolioData.portfolio.portfolioSettings?.isPublic ?? true,
         });
@@ -43,7 +43,7 @@ export default function PortfolioSettings() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
+    //formData required for multipart/form data (ie bio image upload)
     const formData = new FormData();
     formData.append('bio', form.bio);
     formData.append('linkedin', form.links.linkedin);
@@ -80,15 +80,15 @@ export default function PortfolioSettings() {
   if (!user) return <div className="p-6 text-center text-gray-500">Loading...</div>;
 
   return (
-    <div className="bg-[#f9f9ff] min-h-screen h-screen overflow-hidden">
+    <div className="bg-[#f7fcfa] min-h-screen h-screen overflow-hidden">
       <PortfolioHeader userName={user.userName} isOwner={true} />
 
       <div className="max-w-4xl mx-auto py-4">
         <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4">
-          <h1 className="text-2xl font-semibold text-indigo-700 text-center mb-6">Edit Portfolio Settings</h1>
+          <h1 className="text-2xl font-semibold text-emerald-700 text-center mb-6">Edit Portfolio Settings</h1>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
+            <div> 
               <label className="block text-sm font-medium text-gray-700 mb-1">Bio</label>
               <textarea
                 value={form.bio}
@@ -108,7 +108,7 @@ export default function PortfolioSettings() {
               />
             </div>
 
-            <div>
+            <div> 
               <label className="block text-sm font-medium text-gray-700 mb-1">LinkedIn</label>
               <input
                 type="url"
@@ -118,7 +118,7 @@ export default function PortfolioSettings() {
               />
             </div>
 
-            <div>
+            <div> 
               <label className="block text-sm font-medium text-gray-700 mb-1">Website</label>
               <input
                 type="url"
@@ -144,7 +144,8 @@ export default function PortfolioSettings() {
                 id="isPublic"
                 checked={form.isPublic}
                 onChange={e => setForm(prev => ({ ...prev, isPublic: e.target.checked }))}
-                className="mr-2"
+                className="mr-2 accent-green-500"
+
               />
               <label htmlFor="isPublic" className="text-sm text-gray-700">
                 Portfolio is Public
@@ -156,7 +157,7 @@ export default function PortfolioSettings() {
             <div className="text-center">
               <button
                 type="submit"
-                className="px-6 py-2 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-700 transition"
+                className="px-6 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-300 transition"
               >
                 Save Settings
               </button>

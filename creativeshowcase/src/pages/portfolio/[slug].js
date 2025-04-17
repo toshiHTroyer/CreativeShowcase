@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import PortfolioHeader from '../../components/PortfolioHeader';
 
+
 export default function PublicPortfolio() {
   const { query, reload } = useRouter();
   const [portfolio, setPortfolio] = useState(null);
@@ -59,7 +60,7 @@ export default function PublicPortfolio() {
       alert('An error occurred');
     }
   }
-
+  
   if (loading) return <div className="p-6 text-center text-gray-500">Loading...</div>;
   if (error) return <div className="p-6 text-center text-red-500">{error}</div>;
   if (!portfolio) return <div className="p-6 text-center text-gray-500">Portfolio does not exist.</div>;
@@ -72,11 +73,11 @@ export default function PublicPortfolio() {
   }
 
   return (
-    <div className="bg-[#f9f9ff] min-h-screen">
+    <div className="bg-[#f7fcfa] min-h-screen">
       <PortfolioHeader userName={portfolio.user.userName} isOwner={true}/>
 
       <div className="flex max-w-7xl mx-auto px-4 py-10 gap-8">
-        <aside className="w-64 shrink-0 top-24 h-fit bg-white border border-gray-200 rounded-xl shadow-sm p-4">
+        <aside className="w-64 shrink-0 top-24 h-fit bg-white border border-gray-300 rounded-xl shadow-lg p-4">
           <div className="w-35 h-35 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
             <img
               src={portfolio.bioImage || '/default-profile.png'}
@@ -90,13 +91,13 @@ export default function PublicPortfolio() {
 
           <div className="flex justify-center items-center gap-x-3 mb-4">
             {portfolio.links?.website && (
-              <a href={portfolio.links.website} target="_blank" rel="noopener noreferrer" className="text-sm text-indigo-600 hover:underline">Website</a>
+              <a href={portfolio.links.website} target="_blank" rel="noopener noreferrer" className="text-sm text-emerald-800 hover:underline">Website</a>
             )}
             {portfolio.links?.linkedin && (
-              <a href={portfolio.links.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm text-indigo-600 hover:underline">LinkedIn</a>
+              <a href={portfolio.links.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm text-emerald-800 hover:underline">LinkedIn</a>
             )}
             {portfolio.links?.instagram && (
-              <a href={portfolio.links.instagram} target="_blank" rel="noopener noreferrer" className="text-sm text-indigo-600 hover:underline">Instagram</a>
+              <a href={portfolio.links.instagram} target="_blank" rel="noopener noreferrer" className="text-sm text-emerald-800 hover:underline">Instagram</a>
             )}
           </div>
 
@@ -108,13 +109,13 @@ export default function PublicPortfolio() {
         <main className="flex-1">
           {portfolio.categories?.length > 0 ? (
             portfolio.categories.map(cat => (
-              <section key={cat._id} className="bg-white border border-gray-200 rounded-xl shadow-sm mb-8 p-6 transition hover:shadow-md">
+              <section key={cat._id} className="relative bg-white border border-gray-300 rounded-xl shadow-lg mb-8 p-6 transition hover:shadow-md">
                 <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-xl font-semibold text-indigo-700">{cat.name}</h2>
+                  <h2 className="text-xl font-semibold text-emerald-700">{cat.name}</h2>
                   {isOwner && (
                     <button
                       onClick={() => handleDeleteCategory(cat._id)}
-                      className="text-sm text-red-600 border border-red-600 px-2 py-1 rounded hover:bg-red-50"
+                      className="text-xs bottom-0 text-red-600 border border-red-600 px-1 py-1 rounded hover:bg-red-50"
                     >
                       Delete Category
                     </button>

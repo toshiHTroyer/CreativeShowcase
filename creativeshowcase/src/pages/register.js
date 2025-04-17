@@ -35,47 +35,47 @@ export default function Register() {
   return (
     <div className="flex flex-col h-screen overflow-hidden">
     <PublicHeader />
-    <div className="relative min-h-screen flex items-center justify-center bg-[#f6f6ff] px-4">
+    <div className="relative min-h-screen flex items-center justify-center bg-[#f0fbf7] px-4">
       <div className="absolute top-12 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold text-indigo-600 font-sans tracking-wide">
+        <h1 className="text-3xl md:text-4xl font-bold text-green-800 font-sans tracking-wide">
           Create your Portfolio
         </h1>
       </div>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white border-2 border-purple-400 rounded-xl p-8 shadow-md max-w-md w-full"
+        className="bg-white border-2 border-green-700 rounded-xl p-8 shadow-md max-w-md w-full"
       >
         <h2 className="text-2xl font-bold text-center mb-6 font-sans text-[#171717]">Register</h2>
 
         {error && (
-          <p className="text-red-500 text-sm mb-4 text-center">{error}</p>
+          <p className="text-red-500 text-xs mb-4 text-center">{error}</p>
         )}
 
         <input
           placeholder="Username"
           onChange={e => setForm({ ...form, userName: e.target.value })}
-          className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
+          className="w-full p-2 mb-4 border-2 border-green-600 rounded focus:outline-none focus:ring-2 focus:ring-green-400"
         />
 
         <input
           placeholder="Email"
           type="email"
           onChange={e => setForm({ ...form, email: e.target.value })}
-          className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
+          className="w-full p-2 mb-4 border-2 border-green-600 rounded focus:outline-none focus:ring-2 focus:ring-green-400"
         />
 
         <input
           type="password"
           placeholder="Password"
           onChange={e => setForm({ ...form, password: e.target.value })}
-          className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
+          className="w-full p-2 mb-4 border-2 border-green-600 rounded focus:outline-none focus:ring-2 focus:ring-green-400"
         />
 
         <input
           placeholder="Focus (e.g. Film, Design)"
           onChange={e => setForm({ ...form, focus: e.target.value })}
-          className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
+          className="w-full p-2 mb-4 border-2 border-green-600 rounded focus:outline-none focus:ring-2 focus:ring-green-400"
         />
 
         <label className="flex items-center gap-2 text-sm text-gray-700 mb-4">
@@ -83,18 +83,20 @@ export default function Register() {
             type="checkbox"
             checked={form.isPublic}
             onChange={e => setForm({ ...form, isPublic: e.target.checked })}
-            className="accent-purple-500"
+            className="accent-green-500"
           />
           Public Portfolio
         </label>
 
-        <button type="submit" className="w-full font-bold">
-          Register
-        </button>
+        <div className="text-center">
+          <button type="submit" className="border-2 border-green-600 px-3 py-1 bg-[#f0fbf7] hover:bg-green-600 font-bold rounded">
+            Register
+          </button>
+        </div>
 
         <p className="text-center mt-4 text-sm text-gray-600">
           Already have an account?{' '}
-          <a href="/" className="underline text-purple-700 hover:text-purple-900">
+          <a href="/" className="text-green-700 hover:text-green-900">
             Login
           </a>
         </p>

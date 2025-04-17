@@ -9,7 +9,7 @@ export default function PortfolioHeader({ isOwner, userName }) {
         {/* Left: Brand Name links to user portfolio */}
         <Link
           href={portfolioUrl}
-          className="text-2xl font-bold text-indigo-600 tracking-tight"
+          className="text-2xl font-bold text-emerald-700 tracking-tight"
         >
           Creative Showcase
         </Link>
@@ -20,20 +20,20 @@ export default function PortfolioHeader({ isOwner, userName }) {
             <>
               <Link
                 href="/portfolio/category"
-                className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 transition"
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-[#f0fbf7] border border-green-600 rounded-md hover:bg-green-100 transition"
               >
                 Add a Category
               </Link>
               <Link
                 href="/portfolio/project"
-                className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 transition"
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-[#f0fbf7] border border-green-600 rounded-md hover:bg-green-300 transition"
               >
                 Add a Project
               </Link>
 
               <Link
                 href="/portfolio/settings"
-                className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 transition"
+                className="px-4 py-2 text-sm font-medium bg-[#f0fbf7] text-gray-700 bg-[#f0fbf7] border border-green-600 rounded-md hover:bg-green-300 transition"
               >
                 Portfolio Settings
               </Link>
@@ -43,7 +43,7 @@ export default function PortfolioHeader({ isOwner, userName }) {
           <form action="/api/logout" method="POST">
             <button
               type="submit"
-              className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 transition"
+              className="px-4 py-2 text-sm font-medium text-gray-700 border bg-[#f0fbf7] border-green-600 rounded-md hover:bg-green-300 transition"
             >
               Logout
             </button>
