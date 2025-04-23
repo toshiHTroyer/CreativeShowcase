@@ -88,5 +88,10 @@ Optional project notes
 
 Attributions
 ---
-(TODO:  list sources that you have based your code off of, 1 per line, with file name, a very short description, and an accompanying url... for example: routes/index.js - Authentication code based off of http://foo.bar/baz ... alternatively, if you have already placed annotations in your project, answer "See source code comments")
+1. [Embedding Links to New Pages (ie LinkedIn, Instagram)](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/795954fda8e7ddbf1fd9e5b113fe3b46cffe46ff/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L101)  
+[Resource- Stack Overflow](https://stackoverflow.com/questions/50709625/link-with-target-blank-and-rel-noopener-noreferrer-still-vulnerable)
+2. [File Upload using API with Formidable](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/d3b3fcb2fe5f8c5b4f06edc573957594b29a2770/creativeshowcase/src/pages/api/settings.js#L9)  
+[Resource](https://medium.com/@pradeepgudipatinextjs-typescript-file-upload-using-api-with-formidable-and-the-5-lines-that-changed-everything-980162f3da7a)
+
+
 
