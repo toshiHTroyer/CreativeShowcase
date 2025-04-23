@@ -1,5 +1,3 @@
-Milestone 4
-
 Milestone 04 - Final Project Documentation
 ===
 
