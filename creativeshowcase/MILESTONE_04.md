@@ -92,6 +92,11 @@ Attributions
 [Resource- Stack Overflow](https://stackoverflow.com/questions/50709625/link-with-target-blank-and-rel-noopener-noreferrer-still-vulnerable)
 2. [File Upload using API with Formidable](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/d3b3fcb2fe5f8c5b4f06edc573957594b29a2770/creativeshowcase/src/pages/api/settings.js#L9)  
 [Resource](https://medium.com/@pradeepgudipatinextjs-typescript-file-upload-using-api-with-formidable-and-the-5-lines-that-changed-everything-980162f3da7a)
+3. Passport.js LocalStrategy Implementation - [/src/lib/passport.js from line 6](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L6)  
+Resource - [Passport.js LocalStrategy Implementation](https://www.passportjs.org/packages/passport-local/)  
+4. Passport.js Session Documentation - [/src/lib/passport.js from line 25](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L25)  
+5. Passport.js Session Documentation - [Middleware Handling within login.js - middleware included in all api files](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/pages/api/login.js#L17)  
+Resource - [Passport.js Session Documentation](https://www.passportjs.org/concepts/authentication/sessions/)  
 
 
 
