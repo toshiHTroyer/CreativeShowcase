@@ -1,3 +1,5 @@
+// src/pages/portfolio/project.js
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PortfolioHeader from '../../components/PortfolioHeader';
@@ -7,6 +9,8 @@ export default function AddProject() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [projectTitle, setProjectTitle] = useState('');
+  const [projectCaption, setProjectCaption] = useState('');
+  const [projectFile, setProjectFile] = useState(null);
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
@@ -29,15 +33,23 @@ export default function AddProject() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!selectedCategory || !projectTitle) return setError('All fields are required');
+    if (!selectedCategory || !projectTitle || !projectFile) {
+      return setError('All fields (including file) are required');
+    }
     if (submitting) return;
 
     setSubmitting(true);
+
+    const formData = new FormData();
+    formData.append('title', projectTitle);
+    formData.append('caption', projectCaption);
+    formData.append('file', projectFile);
+    formData.append('categoryId', selectedCategory);
+
     const res = await fetch('/api/project', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      body: formData,
       credentials: 'include',
-      body: JSON.stringify({ title: projectTitle, categoryId: selectedCategory }),
     });
 
     const data = await res.json();
@@ -54,7 +66,7 @@ export default function AddProject() {
   return (
     <div>
       <PortfolioHeader userName={user.userName} isOwner={true} page="project" />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <label>
           Choose Category:
           <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)} disabled={submitting}>
@@ -71,7 +83,28 @@ export default function AddProject() {
             type="text"
             value={projectTitle}
             onChange={(e) => setProjectTitle(e.target.value)}
-            placeholder="Enter project name"
+            placeholder="Enter project title"
+            disabled={submitting}
+          />
+        </label>
+        <br />
+        <label>
+          Project Caption (optional):
+          <input
+            type="text"
+            value={projectCaption}
+            onChange={(e) => setProjectCaption(e.target.value)}
+            placeholder="Enter project caption"
+            disabled={submitting}
+          />
+        </label>
+        <br />
+        <label>
+          Upload File (Image, Video, or PDF):
+          <input
+            type="file"
+            accept="image/*,application/pdf"
+            onChange={(e) => setProjectFile(e.target.files[0])}
             disabled={submitting}
           />
         </label>
@@ -79,6 +112,7 @@ export default function AddProject() {
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type="submit" disabled={submitting}>Save Project</button>
       </form>
+      {submitting && <p>Uploading... Please wait.</p>}
     </div>
   );
 }

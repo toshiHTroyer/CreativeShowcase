@@ -129,7 +129,35 @@ export default function PublicPortfolio() {
                 {cat.projects?.length > 0 ? (
                   <ul className="list-disc pl-6 space-y-2">
                     {cat.projects.map((proj, i) => (
-                      <li key={i} className="text-gray-700 text-sm">{proj.title}</li>
+                      <li key={i} className="space-y-4">
+                        <h3 className="text-lg font-semibold text-gray-800">{proj.title}</h3>
+
+                        {proj.projectContent?.contentType === 'image' && (
+                          <div className="flex justify-center">
+                            <img
+                              src={proj.projectContent.content}
+                              alt={proj.title}
+                              className="max-w-sm w-full h-auto rounded-md shadow-md border border-gray-300"
+                            />
+                          </div>
+                        )}
+
+                        {proj.projectContent?.contentType === 'pdf' && (
+                          <div className="flex justify-center">
+                            <iframe
+                              src={proj.projectContent.content}
+                              title={proj.title}
+                              width="100%"
+                              height="500px"
+                              className="rounded-md shadow-md border border-gray-300"
+                            ></iframe>
+                          </div>
+                        )}
+
+                        {proj.projectContent?.caption && (
+                          <p className="text-center italic text-gray-600">{proj.projectContent.caption}</p>
+                        )}
+                      </li>
                     ))}
                   </ul>
                 ) : (
