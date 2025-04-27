@@ -1,5 +1,3 @@
-// src/pages/portfolio/project.js
-
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PortfolioHeader from '../../components/PortfolioHeader';
@@ -61,58 +59,83 @@ export default function AddProject() {
     }
   }
 
-  if (!user) return <p>Loading user...</p>;
+  if (!user) return <div className="p-6 text-center text-gray-500">Loading user info...</div>;
 
   return (
-    <div>
+    <div className="bg-[#f7fcfa] min-h-screen h-screen overflow-hidden">
       <PortfolioHeader userName={user.userName} isOwner={true} page="project" />
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <label>
-          Choose Category:
-          <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)} disabled={submitting}>
-            <option value="">--Select--</option>
-            {categories.map(cat => (
-              <option key={cat._id} value={cat._id}>{cat.name}</option>
-            ))}
-          </select>
-        </label>
-        <br />
-        <label>
-          Project Title:
-          <input
-            type="text"
-            value={projectTitle}
-            onChange={(e) => setProjectTitle(e.target.value)}
-            placeholder="Enter project title"
-            disabled={submitting}
-          />
-        </label>
-        <br />
-        <label>
-          Project Caption (optional):
-          <input
-            type="text"
-            value={projectCaption}
-            onChange={(e) => setProjectCaption(e.target.value)}
-            placeholder="Enter project caption"
-            disabled={submitting}
-          />
-        </label>
-        <br />
-        <label>
-          Upload File (Image, Video, or PDF):
-          <input
-            type="file"
-            accept="image/*,application/pdf"
-            onChange={(e) => setProjectFile(e.target.files[0])}
-            disabled={submitting}
-          />
-        </label>
-        <br />
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" disabled={submitting}>Save Project</button>
-      </form>
-      {submitting && <p>Uploading... Please wait.</p>}
+
+      <div className="max-w-4xl mx-auto py-4">
+        <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4">
+          <h1 className="text-2xl font-semibold text-emerald-700 text-center mb-6">Add a New Project</h1>
+
+          <form onSubmit={handleSubmit} className="space-y-6" encType="multipart/form-data">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Choose Category</label>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                disabled={submitting}
+                className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
+              >
+                <option value="">--Select--</option>
+                {categories.map(cat => (
+                  <option key={cat._id} value={cat._id}>{cat.name}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Project Title</label>
+              <input
+                type="text"
+                value={projectTitle}
+                onChange={(e) => setProjectTitle(e.target.value)}
+                placeholder="Enter project title"
+                disabled={submitting}
+                className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Project Caption (optional)</label>
+              <input
+                type="text"
+                value={projectCaption}
+                onChange={(e) => setProjectCaption(e.target.value)}
+                placeholder="Enter project caption"
+                disabled={submitting}
+                className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Upload File (Image or PDF)</label>
+              <input
+                type="file"
+                accept="image/*,application/pdf"
+                onChange={(e) => setProjectFile(e.target.files[0])}
+                disabled={submitting}
+                className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
+              />
+            </div>
+
+            {error && <p className="text-red-600 text-sm text-center">{error}</p>}
+
+            {submitting && <p className="text-center text-gray-500">Uploading... Please wait.</p>}
+
+            <div className="text-center">
+              <button
+                type="submit"
+                disabled={submitting}
+                className="px-6 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-300 transition"
+              >
+                Save Project
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

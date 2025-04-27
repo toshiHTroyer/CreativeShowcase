@@ -41,26 +41,43 @@ export default function AddCategory() {
     }
   }
 
-  if (!user) return <p>Loading user info...</p>;
+  if (!user) return <div className="p-6 text-center text-gray-500">Loading user info...</div>;
 
   return (
-    <div>
+    <div className="bg-[#f7fcfa] min-h-screen h-screen overflow-hidden">
       <PortfolioHeader userName={user.userName} isOwner={true} page="category" />
-      <form onSubmit={handleSubmit}>
-        <label>
-          Category Name:
-          <input
-            type="text"
-            value={categoryName}
-            onChange={(e) => setCategoryName(e.target.value)}
-            placeholder="Enter Category Title*"
-            disabled={submitting}
-          />
-        </label>
-        <br />
-        {error && <p>{error}</p>}
-        <button type="submit" disabled={submitting}>Save Category</button>
-      </form>
+
+      <div className="max-w-4xl mx-auto py-4">
+        <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4">
+          <h1 className="text-2xl font-semibold text-emerald-700 text-center mb-6">Add a New Category</h1>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Category Name</label>
+              <input
+                type="text"
+                value={categoryName}
+                onChange={(e) => setCategoryName(e.target.value)}
+                placeholder="Enter Category Title"
+                disabled={submitting}
+                className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
+              />
+            </div>
+
+            {error && <p className="text-red-600 text-sm text-center">{error}</p>}
+
+            <div className="text-center">
+              <button
+                type="submit"
+                disabled={submitting}
+                className="px-6 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-300 transition"
+              >
+                Save Category
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
