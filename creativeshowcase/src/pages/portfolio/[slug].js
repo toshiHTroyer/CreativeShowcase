@@ -231,7 +231,7 @@ export default function PublicPortfolio() {
               </section>
             ))
           ) : (
-            <div className="text-center text-gray-600 italic"> No categories.</div>
+            <div className="text-center text-gray-600 italic"> No categories yet.</div>
           )}
         </main>
       </div>

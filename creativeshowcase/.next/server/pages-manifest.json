@@ -4,5 +4,8 @@
   "/_document": "pages/_document.js",
   "/portfolio/[slug]": "pages/portfolio/[slug].js",
   "/portfolio/settings": "pages/portfolio/settings.js",
-  "/": "pages/index.js"
+  "/": "pages/index.js",
+  "/api/public-users": "pages/api/public-users.js",
+  "/api/portfolio": "pages/api/portfolio.js",
+  "/api/me": "pages/api/me.js"
 }
