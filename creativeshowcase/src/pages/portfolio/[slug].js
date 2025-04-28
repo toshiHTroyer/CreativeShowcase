@@ -90,7 +90,7 @@ export default function PublicPortfolio() {
   return (
     <div className="bg-[#f0fbf7] min-h-screen">
       {/* light green background, ensures page fills screen height */}
-      <PortfolioHeader userName={portfolio.user.userName} isOwner={true}/>
+      <PortfolioHeader userName={portfolio.user.userName} isOwner={isOwner}/>
 
       <div className="flex max-w-7xl mx-auto px-4 py-10 gap-8">
         {/* flex layout for sidebar/bio + main content, mx-auto centers the whole row */}

@@ -37,11 +37,21 @@ To register and use the site:
 
 URL for Form 2 (for current milestone)
 ---
-(TODO: if applicable, add link to page that shows results of submitting form)
+- **Project Upload**  
+  - [Add a Project `/portfolio/project`](https://glowing-carnival-66qv746rvgx34v77-3000.app.github.dev/portfolio/project)
+    -  Result on user portfolio page
+    -  Note: Some files will take a long time to load (may have to refresh manually)
+- **User Portfolio - Explore Other Creatives Section** (replace `[username]` with yours)  
+    - [https://glowing-carnival-66qv746rvgx34v77-3000.app.github.dev/portfolio/[username]](https://glowing-carnival-66qv746rvgx34v77-3000.app.github.dev/portfolio/[username])
 
 Special Instructions for Form 2
 ---
-(TODO: if your app requires special instructions to use or if your app requires authentication, add information here; otherwise, leave blank)
+- No new dedicated form was created for this milestone.
+- The project file upload feature was fully implemented in my already existing add a project form. I used the formidable npm package in the /api project.js backend route to implement this feature. The uploaded projects are displayed dynamically inside the existing public portfolio page /portfolio/[username], which now renders images/PDFs styled within their own project card within their category card using Tailwind CSS.
+  - To upload a project, just select what category to add to, add a tile (and description if you would like), and upload a reasonably sized image or pdf. After a succesful upload, you will be redirected to your personal updated /portfolio/[username] site. 
+- I also implemented a new /api/public-users API route, which fetches all users with public portfolios. On the 
+/portfolio/[slug] users portfolio page, the public users are fetched from /api/public-users and displayed underneath the bio section so that users can explore public portfolios. 
+  - To explore other public users, simply scroll down the `Explore Other Creatives` section, and click on a users portfolio image or username. You will be redirected to their public portfolio where you can view their projects. Just click `Back to My Portfolio` to return. You can also click on Creative Showcase in the header to return to your profile. 
 
 URL for Form 3 (User Portfolio, Add a Category, Add a Project, Edit Portfolio from Milestone 2 and 3)
 ---
@@ -66,6 +76,7 @@ Special Instructions for Form 3
 ---
 1. Register and get logged into your personal portfolio page with your username slug path
 2. Once you are logged in, you can add categories to your portfolio, projects to your categories, or update your bio in portfolio settings. 
+3. Just click on Creative Showcase in the header to return to your portfolio. 
 
 First link to github line number(s) for constructor, HOF, etc.
 ---
@@ -111,9 +122,6 @@ Links to github line number(s) for research topics described above (one link per
     - [Implementation ex in `/components/PortfolioHeader.js` entire file](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/ceb4617c262315f3d0b7610d085360b8769647ff/creativeshowcase/src/components/PortfolioHeader.js#L9)
     - Tailwind CSS is used for all client-side layout and design across the project, implemented in all /components files and in all non-/api files under /pages.
 
-Optional project notes 
---- 
-(TODO: optionall add add any other information required for using/testing the final project)
 
 Attributions
 ---

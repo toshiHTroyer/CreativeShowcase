@@ -1,7 +1,26 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 export default function PortfolioHeader({ isOwner, userName }) {
-  const portfolioUrl = `/portfolio/${userName}`;
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    async function fetchCurrentUser() {
+      try {
+        const res = await fetch('/api/me');
+        const data = await res.json();
+        if (data.user) {
+          setCurrentUser(data.user);
+        }
+      } catch (err) {
+        console.error('Error fetching current user:', err);
+      }
+    }
+    fetchCurrentUser();
+  }, []);
+
+  const portfolioUrl = currentUser ? `/portfolio/${currentUser.userName}` : '/';
 
   return (
     <header className="w-full bg-white border-b border-gray-200 shadow-sm">

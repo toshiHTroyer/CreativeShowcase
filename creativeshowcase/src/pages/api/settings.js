@@ -51,6 +51,11 @@ export default async function handler(req, res) {
           let bioImagePath = null;
 
           if (bioImageFile && bioImageFile[0]?.newFilename) {
+            const mimeType = bioImageFile[0].mimetype;
+            // Validate MIME type manually
+            if (!mimeType.startsWith('image/')) {
+              return res.status(400).json({ error: 'Uploaded file must be an image.' });
+            }
             bioImagePath = `/uploads/${bioImageFile[0].newFilename}`;
           }
 
