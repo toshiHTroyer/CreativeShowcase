@@ -9,7 +9,6 @@ import { User } from '../../models/db.js';
 // - The exported async function handler receives Next.js req and res objects.
 // - In this case for login, the file handles HTTP POST requests for user login authentication using Passport.js middleware and built-in Next.js serverless functions.
 // - Uses sessionOptions middleware to manage sessions directly on the server side, fully within the Next.js serverless environment.
-// - Note: No need to manually create an Express app — Next.js automatically handles request routing and lifecycle inside API routes.
 
 export default async function handler(req, res) {
   // Handle request
