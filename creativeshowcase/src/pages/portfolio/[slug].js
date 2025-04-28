@@ -8,12 +8,13 @@ import PortfolioHeader from '../../components/PortfolioHeader';
 // Next.js automatically maps this dynamic file to URLs like /portfolio/username.
 
 export default function PublicPortfolio() {
-  const { query, reload } = useRouter();
+  const { query, push } = useRouter();
   // Next.js useRouter() hook to access URL query parameters (slug)
   const [portfolio, setPortfolio] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const [publicUsers, setPublicUsers] = useState([]);
 
   //runs every time the slug is available in URL
   //fetch data inside useEffect() when trying access the data only on the client side 
@@ -23,14 +24,16 @@ export default function PublicPortfolio() {
       if (!query.slug) return;
 
       try {
-        const [portfolioRes, userRes] = await Promise.all([
+        const [portfolioRes, userRes, usersRes] = await Promise.all([
           fetch(`/api/portfolio?slug=${query.slug}`), // Next.js API Route: Fetching portfolio details dynamically based on slug
-          fetch('/api/me')
+          fetch('/api/me'),
           // Next.js API Route: Fetching current session/user data
+          fetch('/api/public-users'),
         ]);
 
         const portfolioData = await portfolioRes.json();
         const userData = await userRes.json();
+        const usersData = await usersRes.json();
 
         if (portfolioData.error) {
           setError(portfolioData.error);
@@ -39,6 +42,7 @@ export default function PublicPortfolio() {
 
         setPortfolio(portfolioData.portfolio);
         setCurrentUser(userData.user || null);
+        setPublicUsers(usersData.users || []);
       } catch {
         setError('Something went wrong.');
       } finally {
@@ -90,35 +94,82 @@ export default function PublicPortfolio() {
 
       <div className="flex max-w-7xl mx-auto px-4 py-10 gap-8">
         {/* flex layout for sidebar/bio + main content, mx-auto centers the whole row */}
-        <aside className="w-64 shrink-0 top-24 h-fit bg-white border border-gray-300 rounded-xl shadow-lg p-4">
+        <aside className="w-64 shrink-0 h-fit flex flex-col gap-6">
+          <div className="bg-white border border-gray-300 rounded-xl shadow-lg p-4">
           {/* h-fit allows height to match content, fixed width sidebar (w-64), won't shrink on flex shrink*/}
-          <div className="w-35 h-35 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
-            <img
-              src={portfolio.bioImage || '/default-profile.png'}
-              className="w-full h-full object-cover rounded-full"
-            />
-            {/* circular via rounded-full */}
+            <div className="w-35 h-35 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
+              <img
+                src={portfolio.bioImage || '/default-profile.png'}
+                className="w-full h-full object-cover rounded-full"
+              />
+              {/* circular via rounded-full */}
+            </div>
+
+            <h2 className="text-center font-semibold text-lg text-gray-800 mb-2">
+              {portfolio.user.userName}
+            </h2>
+
+            <h3 className="text-center font-light text-sm text-gray-600 mb-4">
+              {portfolio.specialty}
+            </h3>
+
+            <div className="flex justify-center items-center gap-x-3 mb-4">
+              {portfolio.links?.website && (
+                <a href={portfolio.links.website} target="_blank" rel="noopener noreferrer" className="text-sm text-emerald-800 hover:underline">Website</a>
+              )}
+              {portfolio.links?.linkedin && (
+                <a href={portfolio.links.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm text-emerald-800 hover:underline">LinkedIn</a>
+              )} {/*Open link in a new browser tab w target, rel for security risks & performance */}
+              {portfolio.links?.instagram && (
+                <a href={portfolio.links.instagram} target="_blank" rel="noopener noreferrer" className="text-sm text-emerald-800 hover:underline">Instagram</a>
+              )}
+            </div>
+
+            <p className="text-sm text-gray-600 mb-4">
+              {portfolio.bio || 'No bio yet. Click Edit Portfolio to add one!'}
+            </p>
           </div>
 
-          <h2 className="text-center font-semibold text-lg text-gray-800 mb-2">
-            {portfolio.user.userName}
-          </h2>
+          {!isOwner && currentUser && (
+            <div className="mb-8 text-center">
+              <button
+                onClick={() => push(`/portfolio/${currentUser.userName}`)}
+                className="text-sm font-medium text-emerald-700 border border-emerald-600 px-4 py-1 rounded hover:bg-emerald-100"
+              >
+                ← Back to My Portfolio
+              </button>
+            </div>
+          )}
+          {isOwner && publicUsers.length > 0 && (
+            <div className="bg-white border border-gray-300 rounded-xl shadow-lg p-4">
+              <h3 className="text-md font-semibold text-emerald-700 mb-4 text-center">Explore Other Creatives</h3>
 
-          <div className="flex justify-center items-center gap-x-3 mb-4">
-            {portfolio.links?.website && (
-              <a href={portfolio.links.website} target="_blank" rel="noopener noreferrer" className="text-sm text-emerald-800 hover:underline">Website</a>
-            )}
-            {portfolio.links?.linkedin && (
-              <a href={portfolio.links.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm text-emerald-800 hover:underline">LinkedIn</a>
-            )} {/*Open link in a new browser tab w target, rel for security risks & performance */}
-            {portfolio.links?.instagram && (
-              <a href={portfolio.links.instagram} target="_blank" rel="noopener noreferrer" className="text-sm text-emerald-800 hover:underline">Instagram</a>
-            )}
-          </div>
-
-          <p className="text-sm text-gray-600 mb-4">
-            {portfolio.bio || 'No bio yet. Click Edit Portfolio to add one!'}
-          </p>
+              <div className="space-y-4">
+                {publicUsers
+                  .filter(user => user.userName !== currentUser?.userName)
+                  .map((user, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-center gap-3 bg-white p-2 border border-gray-200 rounded-lg shadow hover:shadow-md transition"
+                    >
+                      <a href={`/portfolio/${user.url}`} className="flex-shrink-0">
+                        <img
+                          src={user.bioImage || '/default-profile.png'}
+                          alt={user.userName}
+                          className="w-14 h-14 object-cover rounded-full border"
+                        />
+                      </a>
+                      <div className="flex-1">
+                        <a href={`/portfolio/${user.url}`} className="font-semibold text-green-600 hover:underline block">
+                          {user.userName}
+                        </a>
+                        <p className="text-xs text-gray-600">{user.specialty || 'No specialty listed'}</p>
+                      </div>
+                    </div>
+                ))}
+              </div>
+            </div>
+          )}
         </aside>
 
         <main className="flex-1">
