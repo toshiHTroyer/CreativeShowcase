@@ -97,13 +97,17 @@ Links to github line number(s) for research topics described above (one link per
 ---
 - **Auth/Passport**
     - [Implementation in `/lib/passport.js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L1)
+    - [Implementation ex in API Files in `/pages/api/login`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/ceb4617c262315f3d0b7610d085360b8769647ff/creativeshowcase/src/pages/api/login.js#L18)
 
 - **Next.js**   
     - [Implementation in `/pages/portfolio/[slug].js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7f1bb62059f79e74d74be990674df4facfc1b255/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L7)  
     - Next.js implementation is seen throughout the entire project (including project structure)  
 
 - **Tailwind.css**  
-    - [Implementation in `/pages/portfolio/[slug].js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7f1bb62059f79e74d74be990674df4facfc1b255/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L95)
+    - [Implementation ex in `/pages/portfolio/[slug].js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7f1bb62059f79e74d74be990674df4facfc1b255/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L95)
+    - [Implementation ex in `/pages/index.js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/ceb4617c262315f3d0b7610d085360b8769647ff/creativeshowcase/src/pages/index.js#L44)
+    - [Implementation ex in `/components/PortfolioHeader.js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/ceb4617c262315f3d0b7610d085360b8769647ff/creativeshowcase/src/components/PortfolioHeader.js#L9)
+    - Tailwind css is used throughout the entirety of the project for client side layout and design
 
 
 Optional project notes 

@@ -1,8 +1,15 @@
-// /api/login.js
 import dbConnect from '../../lib/dbConnect.js';
 import { sessionOptions } from '../../lib/session.js';
 import passport from '../../lib/passport.js';
 import { User } from '../../models/db.js';
+
+// Next.js API Route implementation: 
+// - This file defines a backend endpoint under /api/login using Next.js API routes.
+// - Follows Next.js convention where any file inside /pages/api is treated as an API endpoint.
+// - The exported async function handler receives Next.js req and res objects.
+// - In this case for login, the file handles HTTP POST requests for user login authentication using Passport.js middleware and built-in Next.js serverless functions.
+// - Uses sessionOptions middleware to manage sessions directly on the server side, fully within the Next.js serverless environment.
+// - Note: No need to manually create an Express app — Next.js automatically handles request routing and lifecycle inside API routes.
 
 export default async function handler(req, res) {
   // Handle request
@@ -14,6 +21,7 @@ export default async function handler(req, res) {
   return new Promise((resolve, reject) => {
     sessionOptions(req, res, () => {
       passport.initialize()(req, res, () => {
+        //Uses sessionOptions middleware to manage sessions directly on the server side, fully within the Next.js serverless environment.
         //As user navigates from page to page, session authenticated using built-in session strategy
         passport.session()(req, res, () => {
           passport.authenticate('local', async (err, user, info) => {
