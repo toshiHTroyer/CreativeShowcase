@@ -6,7 +6,7 @@ export default function PortfolioHeader({ isOwner, userName }) {
   return (
     <header className="w-full bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* max-w sets fixed width and pushes elems towards rightm, mx-auto centers the element horizontally, items pushed to the far left/ right, with space between (justify-between_))*/}
+        {/* max-w-7xl for responsive width, mx-auto for centering, px-6/py-4 for padding, flex for layout, items-center for vertical alignment, justify-between for spacing between elements*/}
         <Link
           href={portfolioUrl}
           className="text-2xl font-bold text-emerald-700 tracking-tight"

@@ -99,10 +99,11 @@ Links to github line number(s) for research topics described above (one link per
     - [Implementation in `/lib/passport.js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L1)
 
 - **Next.js**   
-    - [Implementation in `/pages/portfolio/[slug].js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L11)
+    - [Implementation in `/pages/portfolio/[slug].js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7f1bb62059f79e74d74be990674df4facfc1b255/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L7)  
+    - Next.js implementation is seen throughout the entire project (including project structure)  
 
 - **Tailwind.css**  
-    - [Implementation in `/pages/portfolio/[slug].js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/adcbba76c2b80b64a43fae31e2374708b2522d6b/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L64)
+    - [Implementation in `/pages/portfolio/[slug].js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7f1bb62059f79e74d74be990674df4facfc1b255/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L95)
 
 
 Optional project notes 

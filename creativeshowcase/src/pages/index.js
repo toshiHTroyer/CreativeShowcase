@@ -42,7 +42,11 @@ return (
         <form
           onSubmit={handleSubmit}
           className="bg-white border-4 border-green-700 rounded-xl p-15 shadow-md max-w-md w-full"
+          
         >
+          {/* bg-white sets the background color to white, border-4: applies a thick 4px solid border, border-green-700 sets the border color to dark green */}
+          {/*rounded-xl: rounds the corners a lott, p-15: applies 3.75rem of padding inside the container, shadow-md: applies a medium-sized shadow for elevation effect*/}
+          {/*max-w-md: restricts the maximum width to 'md' size, w-full: makes the container span the full width of its parent container */}
           <h1 className="text-3xl font-bold font-sans text-center mb-6 font-sans text-emerald-700">Login</h1>
 
           {error && (
