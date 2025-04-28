@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import PortfolioHeader from '../../components/PortfolioHeader';
 
+// Dynamic Nested Route: [slug] allows generating user-specific portfolio pages based on username.
+// Next.js automatically maps this dynamic file to URLs like /portfolio/username.
 
 export default function PublicPortfolio() {
   const { query, reload } = useRouter();
@@ -10,6 +12,9 @@ export default function PublicPortfolio() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
+  //runs every time the slug is available in URL
+  //fetch data inside useEffect() when trying access the data only on the client side 
+  //Using useEffect() & browser fetch() API to fetch: Portfolio data & Session data via /api/me
   useEffect(() => {
     async function fetchData() {
       if (!query.slug) return;
@@ -73,7 +78,7 @@ export default function PublicPortfolio() {
   }
 
   return (
-    <div className="bg-[#f7fcfa] min-h-screen">
+    <div className="bg-[#f0fbf7] min-h-screen">
       {/* light green background, ensures page fills screen height */}
       <PortfolioHeader userName={portfolio.user.userName} isOwner={true}/>
 
@@ -113,52 +118,55 @@ export default function PublicPortfolio() {
         <main className="flex-1">
           {portfolio.categories?.length > 0 ? (
             portfolio.categories.map(cat => (
-              <section key={cat._id} className="relative bg-white border border-gray-300 rounded-xl shadow-lg mb-8 p-6 transition hover:shadow-md">
-                <div className="flex justify-between items-center mb-4">
-                  {/* row layout: title left, delete button right */}
-                  <h2 className="text-xl font-semibold text-emerald-700">{cat.name}</h2>
+              <section key={cat._id} className="relative bg-white border border-gray-300 rounded-xl shadow-lg mb-12 p-6 transition hover:shadow-md">
+                <div className="flex justify-center items-center relative mb-6">
+                  <h2 className="text-2xl font-semibold text-emerald-700 text-center">{cat.name}</h2>
+
                   {isOwner && (
                     <button
                       onClick={() => handleDeleteCategory(cat._id)}
-                      className="text-xs bottom-0 text-red-600 border border-red-600 px-1 py-1 rounded hover:bg-red-50"
+                      className="absolute right-0 px-3 py-1 text-xs text-red-600 border border-red-600 rounded hover:bg-red-50"
                     >
-                      Delete Category
+                      Delete
                     </button>
                   )}
-                </div> {/* bulleted list with left padding */}
+                </div>
                 {cat.projects?.length > 0 ? (
                   <ul className="list-disc pl-6 space-y-2">
-                    {cat.projects.map((proj, i) => (
-                      <li key={i} className="space-y-4">
-                        <h3 className="text-lg font-semibold text-gray-800">{proj.title}</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      {cat.projects.map((proj, i) => (
+                        <div key={i} className="bg-[#f7fcfa] border border-gray-300 rounded-xl shadow-md p-4 flex flex-col items-center">
+                          <h3 className="text-lg font-semibold text-gray-800 text-center mb-4">{proj.title}</h3>
 
-                        {proj.projectContent?.contentType === 'image' && (
-                          <div className="flex justify-center">
-                            <img
-                              src={proj.projectContent.content}
-                              alt={proj.title}
-                              className="max-w-sm w-full h-auto rounded-md shadow-md border border-gray-300"
-                            />
-                          </div>
-                        )}
+                          {proj.projectContent?.contentType === 'image' && (
+                            <div className="w-full flex justify-center mb-4">
+                              <img
+                                src={proj.projectContent.content}
+                                alt={proj.title}
+                                className="w-full max-w-md h-64 object-cover rounded-md shadow-sm border"
+                              />
+                            </div>
+                          )}
 
-                        {proj.projectContent?.contentType === 'pdf' && (
-                          <div className="flex justify-center">
-                            <iframe
-                              src={proj.projectContent.content}
-                              title={proj.title}
-                              width="100%"
-                              height="500px"
-                              className="rounded-md shadow-md border border-gray-300"
-                            ></iframe>
-                          </div>
-                        )}
+                          {proj.projectContent?.contentType === 'pdf' && (
+                            <div className="w-full flex justify-center mb-4">
+                              <iframe
+                                src={proj.projectContent.content}
+                                title={proj.title}
+                                width="100%"
+                                height="250px"
+                                className="rounded-md shadow-sm border"
+                              ></iframe>
+                            </div>
+                          )}
 
-                        {proj.projectContent?.caption && (
-                          <p className="text-center italic text-gray-600">{proj.projectContent.caption}</p>
-                        )}
-                      </li>
-                    ))}
+                          {proj.projectContent?.caption && (
+                            <p className="text-sm text-gray-600 w-full text-left">{proj.projectContent.caption}</p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    
                   </ul>
                 ) : (
                   <p className="text-sm text-gray-500 italic"> No projects yet in this category.</p>
