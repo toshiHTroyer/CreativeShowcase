@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
+// Next.js Dynamic Routing: useRouter() gives access to the slug from the URL (/portfolio/[slug])
 import { useEffect, useState } from 'react';
+// React hooks for client-side state and side effects
 import PortfolioHeader from '../../components/PortfolioHeader';
 
 // Dynamic Nested Route: [slug] allows generating user-specific portfolio pages based on username.
@@ -7,6 +9,7 @@ import PortfolioHeader from '../../components/PortfolioHeader';
 
 export default function PublicPortfolio() {
   const { query, reload } = useRouter();
+  // Next.js useRouter() hook to access URL query parameters (slug)
   const [portfolio, setPortfolio] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState('');
@@ -14,15 +17,16 @@ export default function PublicPortfolio() {
 
   //runs every time the slug is available in URL
   //fetch data inside useEffect() when trying access the data only on the client side 
-  //Using useEffect() & browser fetch() API to fetch: Portfolio data & Session data via /api/me
+  // Client-Side Data Fetching with useEffect(), Fetch Portfolio & Session Data when URL slug is available
   useEffect(() => {
     async function fetchData() {
       if (!query.slug) return;
 
       try {
         const [portfolioRes, userRes] = await Promise.all([
-          fetch(`/api/portfolio?slug=${query.slug}`),
+          fetch(`/api/portfolio?slug=${query.slug}`), // Next.js API Route: Fetching portfolio details dynamically based on slug
           fetch('/api/me')
+          // Next.js API Route: Fetching current session/user data
         ]);
 
         const portfolioData = await portfolioRes.json();
@@ -43,12 +47,13 @@ export default function PublicPortfolio() {
     }
 
     fetchData();
-  }, [query.slug]);
+  }, [query.slug]); 
+  // useEffect depends on query.slug
 
   async function handleDeleteCategory(id) {
     const confirmed = confirm('Are you sure you want to delete this category?');
     //confirm like alert
-    if (!confirmed) return;
+    if (!confirmed) return; // Browser-native confirm dialog
 
     try {
       const res = await fetch(`/api/category/${id}`, {
@@ -58,6 +63,7 @@ export default function PublicPortfolio() {
       const data = await res.json();
       if (res.ok) {
         location.reload();
+        // Force reload to reflect deleted category
       } else {
         alert(data.error || 'Failed to delete category');
       }
