@@ -24,7 +24,6 @@ export default async function handler(req, res) {
       passport.session()(req, res, async () => {
         const user = req.user;
         if (!user) return res.status(401).json({ error: 'Unauthorized' });
-
         const form = formidable({
           multiples: false, // Only allow a single file per upload
           uploadDir: path.join(process.cwd(), 'public/projectUploads'), // Files saved into a custom projectUploads folder
@@ -32,6 +31,7 @@ export default async function handler(req, res) {
           //into a folder in my project.... for next time it would be good to do research on using a server for storage
           keepExtensions: true,
         });
+        // Parses file uploads using Formidable (multiples: false, custom uploadDir, keepExtensions), based on the MIT-licensed formidable npm package.
         //.parse(req, callback) pattern to extract fields and files
         form.parse(req, async (err, fields, files) => {
           if (err) {
