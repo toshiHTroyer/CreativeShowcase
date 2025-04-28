@@ -69,16 +69,16 @@ Special Instructions for Form 3
 
 First link to github line number(s) for constructor, HOF, etc.
 ---
-[Use of `map` to render categories - /src/pages/portfolio/[slug].js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/36e311352d15a94c0630ab23f3c8dd2d04e7fce4/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L115)
+[Use of `map` to render categories - /src/pages/portfolio/[slug].js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/85b367c9be82e8778361e1fc623faafc873c2325/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L177)
 
 Second link to github line number(s) for constructor, HOF, etc.
 ---
-[Use of `map` to render select options - /src/pages/portfolio/project.js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/d3b3fcb2fe5f8c5b4f06edc573957594b29a2770/creativeshowcase/src/pages/portfolio/project.js#L62)
+[Use of `filter` to show only public users - /src/pages/portfolio/[slug].js](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/85b367c9be82e8778361e1fc623faafc873c2325/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L149)
 
 Short description for links above
 ---
-1. `map` is used first to transform the categories array into a list of rendered sections on the portfolio page, and then again inside each category to iterate over its projects array and render individual project details. (map is used twice in [slug].js for iterating over the categories and projects arrays.)
-2. `map` is used to transform the `categories` Array into `<option>` dropdown choices for selecting a category to add a project to.  
+1. `map` is first used to transform the categories array into a list of rendered sections on the portfolio page, with each section representing a category. Inside each category, map is used again (line 194) to iterate over its projects array and render individual project details. Overall, map is used twice in [slug].js: once to iterate over the categories array and once inside each category to iterate over its projects array. 
+2. `filter` is used to transform the publicUsers array by removing the logged-in user’s own account from the list so they only see other users’ public portfolios.
 
 Link to github line number(s) for schemas
 ---
