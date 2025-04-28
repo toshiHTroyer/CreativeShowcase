@@ -87,7 +87,7 @@ Link to github line number(s) for schemas
 Description of research topics above with points
 ---
 - **Authentication / Passport.js (2 points)**   
-    -  Implemented user authentication and session management using Passport.js LocalStrategy in (`/lib/passport.js`) and protected API routes throughout my project, for example in (`login.js`, `me.js`, `project.js`) by nesting sessionOptions,passport.initialize(), and passport.session() to guaraentee middleware/authentication completes before anything else each time a user navigates to a form. 
+    -  Implemented user authentication and session management using Passport.js LocalStrategy in (`/lib/passport.js`) and protected API routes throughout my project, for example in (`login.js`, `me.js`, `project.js`) by nesting sessionOptions,passport.initialize(), and passport.session() to guaraentee authentication middlewarecompletes before anything else each time a user navigates to a form. 
 - **Next.js (6 points)**  
     - Structured the entire application using Next.js, implementing dynamic nested routes like `/portfolio/[slug]` and `/portfolio/project` to support user-specific portfolio pages and project forms, while also using Next.js API routes (`/api/login.js`, `/api/project.js`) for server-side functionality and secure database operations.  
 - **Tailwind.css (4 points)**
@@ -96,8 +96,9 @@ Description of research topics above with points
 Links to github line number(s) for research topics described above (one link per line)
 ---
 - **Auth/Passport**
-    - [Implementation in `/lib/passport.js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L1)
-    - [Implementation ex in API Files in `/pages/api/login`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/4f2749cc45d355b1b297846485cb7a261c46c650/creativeshowcase/src/pages/api/login.js#L22)
+    - [Implementation in `/lib/passport.js`: entire file](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L1)
+    - [Implementation in API Files in `/pages/api/login`: note lines 22 - 27 specifically](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/4f2749cc45d355b1b297846485cb7a261c46c650/creativeshowcase/src/pages/api/login.js#L22)
+    - [Note this Comment in `/pages/api/login`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/4f2749cc45d355b1b297846485cb7a261c46c650/creativeshowcase/src/pages/api/login.js#L10)
 
 - **Next.js**   
     - [Implementation in `/pages/portfolio/[slug].js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7f1bb62059f79e74d74be990674df4facfc1b255/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L7)  
@@ -105,11 +106,10 @@ Links to github line number(s) for research topics described above (one link per
     - Next.js implementation is seen throughout the entire project (including project structure)  
 
 - **Tailwind.css**  
-    - [Implementation ex in `/pages/portfolio/[slug].js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7f1bb62059f79e74d74be990674df4facfc1b255/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L95)
-    - [Implementation ex in `/pages/index.js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/ceb4617c262315f3d0b7610d085360b8769647ff/creativeshowcase/src/pages/index.js#L44)
-    - [Implementation ex in `/components/PortfolioHeader.js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/ceb4617c262315f3d0b7610d085360b8769647ff/creativeshowcase/src/components/PortfolioHeader.js#L9)
-    - Tailwind css is used throughout the entirety of the project for client side layout and design
-
+    - [Implementation ex in `/pages/portfolio/[slug].js`: lines 79 - 240](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7f1bb62059f79e74d74be990674df4facfc1b255/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L95)
+    - [Implementation ex in `/pages/index.js`: lines 27 -85](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/ceb4617c262315f3d0b7610d085360b8769647ff/creativeshowcase/src/pages/index.js#L44)
+    - [Implementation ex in `/components/PortfolioHeader.js` entire file](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/ceb4617c262315f3d0b7610d085360b8769647ff/creativeshowcase/src/components/PortfolioHeader.js#L9)
+    - Tailwind CSS is used for all client-side layout and design across the project, implemented in all /components files and in all non-/api files under /pages.
 
 Optional project notes 
 --- 

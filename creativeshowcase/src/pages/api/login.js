@@ -24,9 +24,11 @@ export default async function handler(req, res) {
         //Uses sessionOptions middleware to manage sessions directly on the server side, fully within the Next.js serverless environment.
         //As user navigates from page to page, session authenticated using built-in session strategy
         passport.session()(req, res, () => {
+           //passport.session() sets up serialization and deserialization of users into the session
           passport.authenticate('local', async (err, user, info) => {
           //when the session authenticated, passport will call deserializeUser which sets req.user property
           //note similar implementations in other api files (me, register, logout, register), but we only need to authenticate the user in login
+          //ONCE authenticated log the user into the session manually using req.login(user) as seen on line 39 (as we are using custom callback)
             if (err) {
               res.status(500).json({ error: 'Internal server error' });
               return reject(err);
@@ -34,6 +36,10 @@ export default async function handler(req, res) {
             if (!user) {
               return res.status(401).json({ error: info?.message || 'Invalid credentials.' });
             }
+            //Passport exposes a login() function on req to establish a login session.
+            //passport.authenticate() middleware invokes req.login() automatically.
+            //However, we r using a custom callback & Passport does not automatically call req.login()  
+            //so we must manually call req.login(user) here to establish a login session after successful authentication.
             req.login(user, async (err) => {
               if (err) {
                 res.status(500).json({ error: 'Login failed.' });
