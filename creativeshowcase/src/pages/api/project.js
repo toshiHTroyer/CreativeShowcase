@@ -26,11 +26,13 @@ export default async function handler(req, res) {
         if (!user) return res.status(401).json({ error: 'Unauthorized' });
 
         const form = formidable({
-          multiples: false,
-          uploadDir: path.join(process.cwd(), 'public/projectUploads'),
+          multiples: false, // Only allow a single file per upload
+          uploadDir: path.join(process.cwd(), 'public/projectUploads'), // Files saved into a custom projectUploads folder
+          //My current implementation for file upload (including bio image) is not very good as the file is just uploaded
+          //into a folder in my project.... for next time it would be good to do research on using a server for storage
           keepExtensions: true,
         });
-
+        //.parse(req, callback) pattern to extract fields and files
         form.parse(req, async (err, fields, files) => {
           if (err) {
             console.error('Formidable error:', err);
@@ -50,7 +52,7 @@ export default async function handler(req, res) {
 
           const filePath = `/projectUploads/${file.newFilename}`;
           const mimeType = file.mimetype;
-
+          //Manual validation of MIME types (only images and PDFs accepted)
           let contentType = 'other';
           if (mimeType.startsWith('image/')) {
             contentType = 'image';

@@ -97,10 +97,11 @@ Links to github line number(s) for research topics described above (one link per
 ---
 - **Auth/Passport**
     - [Implementation in `/lib/passport.js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L1)
-    - [Implementation ex in API Files in `/pages/api/login`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/ceb4617c262315f3d0b7610d085360b8769647ff/creativeshowcase/src/pages/api/login.js#L18)
+    - [Implementation ex in API Files in `/pages/api/login`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/4f2749cc45d355b1b297846485cb7a261c46c650/creativeshowcase/src/pages/api/login.js#L22)
 
 - **Next.js**   
     - [Implementation in `/pages/portfolio/[slug].js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7f1bb62059f79e74d74be990674df4facfc1b255/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L7)  
+    - [API Implementation in `/pages/api/login.js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/4f2749cc45d355b1b297846485cb7a261c46c650/creativeshowcase/src/pages/api/login.js#L6)
     - Next.js implementation is seen throughout the entire project (including project structure)  
 
 - **Tailwind.css**  
@@ -120,21 +121,17 @@ Attributions
    [Code Reference](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/795954fda8e7ddbf1fd9e5b113fe3b46cffe46ff/creativeshowcase/src/pages/portfolio/%5Bslug%5D.js#L101)  
    [Resource - Stack Overflow](https://stackoverflow.com/questions/50709625/link-with-target-blank-and-rel-noopener-noreferrer-still-vulnerable)
 
-2. **File Upload Using API with Formidable**  
-   [Code Reference](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/d3b3fcb2fe5f8c5b4f06edc573957594b29a2770/creativeshowcase/src/pages/api/settings.js#L9)  
-   [Resource - Medium Article](https://medium.com/@pradeepgudipatinextjs-typescript-file-upload-using-api-with-formidable-and-the-5-lines-that-changed-everything-980162f3da7a)
-
-3. **File Upload Form Parsing with Formidable**  
+2. **File Upload Form Parsing with Formidable**  
    [Code Reference](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/36e311352d15a94c0630ab23f3c8dd2d04e7fce4/creativeshowcase/src/pages/api/project.js#L34)  
    [Resource - npmjs.com (Formidable Package)](https://www.npmjs.com/package/formidable)
 
-4. **Passport.js LocalStrategy Implementation**  
-   [Code Reference](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L6)  
+3. **Passport.js LocalStrategy Implementation**  
+   [Code Reference - Passport.js LocalStrategy Implementation in `/lib/passport.js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L6)  
    [Resource - Passport.js LocalStrategy Documentation](https://www.passportjs.org/packages/passport-local/)
 
-5. **Passport.js Session Handling**  
-   [Code Reference 1 - Passport.js Session Setup](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L25)  
-   [Code Reference 2 - Middleware Handling within `login.js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/pages/api/login.js#L17)  
+4. **Passport.js Session Handling**  
+   [Code Reference 1 - Passport.js Session Setup in `/lib/passport.js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/7d872346a83f61ad5a431142919a25e98152a539/creativeshowcase/src/lib/passport.js#L25)  
+   [Code Reference 2 - Middleware Handling within `/pages/api/login.js`](https://github.com/nyu-csci-ua-0467-001-002-spring-2025/final-project-deployment-toshiHTroyer/blob/4f2749cc45d355b1b297846485cb7a261c46c650/creativeshowcase/src/pages/api/login.js#L24)  
    [Resource - Passport.js Session Documentation](https://www.passportjs.org/concepts/authentication/sessions/)
 
 
