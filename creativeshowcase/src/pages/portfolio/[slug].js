@@ -144,13 +144,13 @@ export default function PublicPortfolio() {
             <div className="bg-white border border-gray-300 rounded-xl shadow-lg p-4">
               <h3 className="text-md font-semibold text-emerald-700 mb-4 text-center">Explore Other Creatives</h3>
 
-              <div className="space-y-4">
+              <div className="space-y-4 max-h-[429px] overflow-y-auto pr-2">
                 {publicUsers
                   .filter(user => user.userName !== currentUser?.userName)
                   .map((user, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center gap-3 bg-white p-2 border border-gray-200 rounded-lg shadow hover:shadow-md transition"
+                      className="flex items-center gap-3 bg-white p-1 border border-gray-200 rounded-lg shadow hover:shadow-md transition"
                     >
                       <a href={`/portfolio/${user.url}`} className="flex-shrink-0">
                         <img
