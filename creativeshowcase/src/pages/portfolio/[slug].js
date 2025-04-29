@@ -144,7 +144,7 @@ export default function PublicPortfolio() {
             <div className="bg-white border border-gray-300 rounded-xl shadow-lg p-4">
               <h3 className="text-md font-semibold text-emerald-700 mb-4 text-center">Explore Other Creatives</h3>
 
-              <div className="space-y-4 max-h-[429px] overflow-y-auto pr-2">
+              <div className="space-y-4 max-h-[428px] overflow-y-auto pr-2">
                 {publicUsers
                   .filter(user => user.userName !== currentUser?.userName)
                   .map((user, idx) => (
