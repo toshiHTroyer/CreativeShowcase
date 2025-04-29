@@ -5,7 +5,7 @@
 ## Overview
 Creating professional portfolios is challenging and time-consuming for busy creative students who need to showcase their work to potential employers. Many default to social media platforms that aren't designed for professional presentation or resort to expensive website builders with steep learning curves. 
 
-That's where CreativeShowcase comes in! CreativeShowcase is a web app that allows film, art, and design students to easily build polished portfolio websites without coding knowledge. Users can register and create their personal portfolio space with a custom URL. 
+That's where CreativeShowcase comes in! CreativeShowcase is a web app that allows art, graphics, and design students to easily build polished portfolio websites without coding knowledge. Users can register and create their personal portfolio space with a custom URL. 
 Once set up, they can upload projects, organize them into categories, and customize their portfolio's appearance. Visitors can browse public portfolios, allowing employers to discover emerging talent while giving students valuable exposure for their work.
 
 ## Data Model
@@ -109,7 +109,7 @@ An Example Category with Embedded Projects:
 2. As a user, I want to log in to the site so that I can securely access and update my portfolio.
 3. As a creative professional, I want to create a portfolio with my bio and specialty so that visitors understand my background and expertise.
 4. As an artist, I want to add categories to my portfolio so that I can organize my work by project type or medium.
-5. As a filmmaker, I want to upload projects to my categories so that I can display my videos logically with descriptions and context.
+5. As an artist, I want to upload projects to my categories so that I can display my art logically with descriptions and context.
 6. As a hiring manager, I want to browse portfolios by specialty so that I can find artists with relevant skills.
 7. As a student, I want to set my portfolio to public or private so that I can control when my work is ready to be viewed.
 8. As a job-seeking creative, I want to share my portfolio URL so that potential employers can easily view my best work.
@@ -121,8 +121,6 @@ An Example Category with Embedded Projects:
     *  Tailwind CSS is a utility-first CSS framework that will enable custom portfolio themes without external API dependencies. Its pre-built classes will allow CreativeShowcase users to customize their portfolio's appearance through an abundance of color schemes and layouts. The framework's container queries and grid system will be especially valuable for creating responsive portfolio layouts that showcase projects effectively on all devices regardless of screen size.
 * Passport.js (2 points):
     * Passport.js is a flexible authentication middleware for Node.js which will enable secure log in sessions in CreativeShowcase. It allows users to register and log in with a username and password using the LocalStrategy. Combined with express-session and MongoDB storage, Passport manages user sessions across routes and API calls. 
-* Jest Unit Testing (3 points):
-  * Jest will help me test critical features of CreativeShowcase to make sure they don't break during development. I'll focus on testing user login/registration, portfolio creation, portfolio public or private settings, and project uploads which are the core functions users depend on. Implementing tests for these critical features will prevent bugs that could compromise user portfolios or cause data loss during the development process.
 
 
 ## [Link to Initial Main Project File](app.mjs) 
