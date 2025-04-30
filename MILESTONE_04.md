@@ -41,11 +41,14 @@ URL for Form 2 (for current milestone)
   - [Add a Project `/portfolio/project`](https://glowing-carnival-66qv746rvgx34v77-3000.app.github.dev/portfolio/project)
     -  Result on user portfolio page
     -  Note: Some files will take a long time to load (may have to refresh manually)
+    -  Note: Look at important section below. 
 - **User Portfolio - Explore Other Creatives Section** (replace `[username]` with yours)  
     - [https://glowing-carnival-66qv746rvgx34v77-3000.app.github.dev/portfolio/[username]](https://glowing-carnival-66qv746rvgx34v77-3000.app.github.dev/portfolio/[username])
 
 Special Instructions for Form 2
 ---
+- **Important**
+    - I had to remove /public/uploads and /public/projectUploads from my git repository using git rm --cached public/uploads etc as there were size issues, so in order to be able to upload user / project images, you will need to recreate these two folders in public directory. Therefore, when you log in / create an account and are looking at other users portfolios/bio images, none of the files I have already uploaded into my project will be present/visible. 
 - No new dedicated form was created for this milestone.
 - The project file upload feature was fully implemented in my already existing add a project form. I used the formidable npm package in the /api project.js backend route to implement this feature. The uploaded projects are displayed dynamically inside the existing public portfolio page /portfolio/[username], which now renders images/PDFs styled within their own project card within their category card using Tailwind CSS.
   - To upload a project, just select what category to add to, add a tile (and description if you would like), and upload a reasonably sized image or pdf. After a succesful upload, you will be redirected to your personal updated /portfolio/[username] site. 
@@ -76,7 +79,8 @@ Special Instructions for Form 3
 ---
 1. Register and get logged into your personal portfolio page with your username slug path
 2. Once you are logged in, you can add categories to your portfolio, projects to your categories, or update your bio in portfolio settings. 
-3. Just click on Creative Showcase in the header to return to your portfolio. 
+3. Just click on Creative Showcase in the header to return to your portfolio.
+4. I had to remove /public/uploads from my git repository using git rm --cached public/uploads etc as there were size issues, so in order to be able to upload user bio images, you will need to recreate the 'users' folder in public directory. Therefore, when you log in / create an account and are looking at other users bio images, none of the files I have already uploaded into my project will be present/visible. 
 
 First link to github line number(s) for constructor, HOF, etc.
 ---
