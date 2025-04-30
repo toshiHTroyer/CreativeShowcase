@@ -46,6 +46,8 @@ URL for Form 2 (for current milestone)
 
 Special Instructions for Form 2
 ---
+- **Important**
+    - I had to remove /public/uploads and /public/projectUploads from my repository, so in order to be able to upload user / project images, you may need to recreate these two folders. 
 - No new dedicated form was created for this milestone.
 - The project file upload feature was fully implemented in my already existing add a project form. I used the formidable npm package in the /api project.js backend route to implement this feature. The uploaded projects are displayed dynamically inside the existing public portfolio page /portfolio/[username], which now renders images/PDFs styled within their own project card within their category card using Tailwind CSS.
   - To upload a project, just select what category to add to, add a tile (and description if you would like), and upload a reasonably sized image or pdf. After a succesful upload, you will be redirected to your personal updated /portfolio/[username] site. 
